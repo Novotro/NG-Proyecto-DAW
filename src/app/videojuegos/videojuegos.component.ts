@@ -1,4 +1,8 @@
 import {Component}  from '@angular/core';
+//Los typings se hacen dentro de los componentes
+declare var jQuery:any;
+declare var $:any;
+
 
 @Component({
     selector : 'videojuegos',
