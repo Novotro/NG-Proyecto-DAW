@@ -23,7 +23,7 @@
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26",
-    "boostrap" : "3.3.6",
+    "bootstrap" : "3.3.6",
     "jquery" : "1.12"
   },
   "devDependencies": {
