@@ -11,17 +11,30 @@ import {Component}  from '@angular/core';
 //PAra recorrer un array con ngFor hay que hacer la siguiente sintaxis <li *ngFor="let VARIABLE of ARRAY">{{VARIABLE}}</li>
 
 export class VideojuegosComponent{
-  public nombre = 'videojuegos' ;
-  public mejor_juego = 'Wakfu' ;
-  public mejor_juego_retro = 'super mario 64' ;
-  public mostrar_retro = true ;
-  public color = 'yellow' ;
+  public nombre:string;
+  public mejor_juego:string;
+  public mejor_juego_retro:string;
+  public mostrar_retro:boolean;
+  public color:string;
+  public year:number;
+  public videojuegos:Array<any>;
 
-  public videojuegos =[
-    'Los simpsons hit and run',
-    'Assassins creed',
-    'GTA',
-    'COD',
-    'Tekken'
-  ] ;
+  constructor(){
+    this.nombre = 'videojuegos' ;
+    this.mejor_juego = 'Wakfu' ;
+    this.mejor_juego_retro  = 'super mario 64' ;
+    this.mostrar_retro = true;
+    this.color = 'yellow';
+    this.year = 2018;
+
+    this.videojuegos=[
+      'Los simpsons hit and run',
+      'Assassins creed',
+      'GTA',
+      'COD',
+      'Tekken',
+      232121
+    ] ;
+
+  }
 }
