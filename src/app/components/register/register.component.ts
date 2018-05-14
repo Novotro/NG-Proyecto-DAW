@@ -19,10 +19,17 @@ export class RegisterComponent implements OnInit{
 
   ){
     this.title = 'Registrate';
-    this.user = new User("","","","","","","ROLE_USER","");  
+    this.user = new User("","","","","","","ROLE_USER","");
   }
 
   ngOnInit(){
     console.log('Componente de register cargado...');
   }
+
+  //Cuando se envia el formulario
+  onSubmit(){
+    console.log(this.user);
+  }
+
+
 }
