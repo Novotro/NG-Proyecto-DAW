@@ -3,10 +3,12 @@ import {Component, OnInit} from '@angular/core';
 //Imports para poder usar las rutas y el modelo usario
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector : 'register',
   templateUrl : './register.component.html'
+  providers: [UserService]   //Para listar los servicios que quiero tener disponible en nuestro componente
 })
 
 export class RegisterComponent implements OnInit{
@@ -15,7 +17,8 @@ export class RegisterComponent implements OnInit{
 
   constructor(
     private _route : ActivatedRoute,
-    private _router : Router
+    private _router : Router,
+    private _userService : UserService
 
   ){
     this.title = 'Registrate';
@@ -28,7 +31,7 @@ export class RegisterComponent implements OnInit{
 
   //Cuando se envia el formulario
   onSubmit(){
-    console.log(this.user);
+    this._userService.register(this.user);
   }
 
 
