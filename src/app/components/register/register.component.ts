@@ -7,13 +7,14 @@ import { UserService } from '../../services/user.service';
 
 @Component({
   selector : 'register',
-  templateUrl : './register.component.html'
+  templateUrl : './register.component.html',
   providers: [UserService]   //Para listar los servicios que quiero tener disponible en nuestro componente
 })
 
 export class RegisterComponent implements OnInit{
   public title : string;
   public user : User;
+  public status : string;
 
   constructor(
     private _route : ActivatedRoute,
@@ -30,8 +31,21 @@ export class RegisterComponent implements OnInit{
   }
 
   //Cuando se envia el formulario
-  onSubmit(){
-    this._userService.register(this.user);
+  onSubmit(form){
+    this._userService.register(this.user).subscribe(  //Recibir respuestas del backend
+      response =>{
+        if(response.user && response.user._id){
+          //console.log(response.user);
+          this.status = 'success';
+          form.reset();
+        }else{
+          this.status = 'error';
+        }
+      },
+      err =>{
+        console.log(<any>err);
+      }
+    );
   }
 
 
