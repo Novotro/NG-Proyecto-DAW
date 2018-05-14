@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { routing, appRoutingProviders} from './app.routing'; //Enrutador
+
+
 //Componentes
 import { AppComponent } from './app.component';
 import { VideojuegosComponent} from './videojuegos/videojuegos.component';
@@ -15,9 +18,12 @@ import { RegisterComponent} from './components/register/register.component';
     RegisterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    routing
   ],
-  providers: [], //Servicios
+  providers: [
+    appRoutingProviders
+  ], //Servicios
   bootstrap: [AppComponent]
 })
 export class AppModule { }
