@@ -1,0 +1,23 @@
+/*Cabecera*/
+
+.navbar-default{
+  background: #ff0808 !important;
+}
+
+.navigation{
+  padding: 0px !important;
+}
+
+.navigation .navbar{
+  border-radius: 0px !important;
+  border: none;
+}
+
+
+.navbar-default .navbar-brand{
+  color: white !important;
+}
+
+.navigation ul li *{
+  color: white !important;
+}
