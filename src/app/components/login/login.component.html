@@ -1,6 +1,14 @@
 <div class="col-lg-5">
 <h1 class="h1Strong">{{title}}</h1>
 
+<div class="alert alert-success"  *ngIf="status == 'success'">
+    Te has identicado correctamente
+</div>
+
+<div class="alert alert-danger"  *ngIf="status == 'error'">
+   El usuario no esta registrado
+</div>
+
   <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-12">
       <p>
         <label>Correo electrónico</label>
