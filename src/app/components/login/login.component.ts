@@ -40,11 +40,10 @@ export class LoginComponent implements OnInit{
             this.status= 'error';
         }else{
             this.status ='success';
-            //Persistir datos del usuario
-
+            //Persistir datos del usuario en el LocalStorage
+            localStorage.setItem('identity', JSON.stringify(this.identity));
             //Conseguir token
             this.getToken();
-
         }
     },
     error =>{
@@ -61,16 +60,15 @@ getToken(){
     this._userService.signup(this.user, 'true').subscribe(  //Recibir respuestas del backend
         response =>{
         this.token= response.token;
+
         console.log(this.token);
         if(this.token.length <= 0){
             this.status= 'error';
         }else{
             this.status ='success';
             //Persistir token del usuario
-
+            localStorage.setItem('token', this.token);
             //Conseguir contadores o estadisticas
-
-
         }
     },
     error =>{
