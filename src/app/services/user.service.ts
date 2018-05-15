@@ -23,7 +23,7 @@ export class UserService{
     }
 
     //Servicio de logeo de usuario
-    signup(user : User , gettoken = null ) : Observable<any>{
+    signup(user : any , gettoken = null ) : Observable<any>{
 
         if(gettoken != null){
             user.gettoken = gettoken;
@@ -47,7 +47,7 @@ export class UserService{
     }
 
     getToken(){
-        let token = JSON.parse(localStorage.getItem('token')); //Convertir el archivo identity de LocalStorage a objeto JS
+        let token = localStorage.getItem('token'); //Convertir el archivo identity de LocalStorage a objeto JS
         if(token != 'undefined'){
             this.token = token;
         }else{
