@@ -13,7 +13,7 @@ export class AppComponent {
 
 
   constructor(
-      private _userService:UserService
+      private _userService : UserService
   ){
       this.title  = 'Ruben Diaz WEBAPP ';
   }

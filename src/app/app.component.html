@@ -4,8 +4,8 @@
 
       <div class="navbar-header">
         <a href="#" class="navbar-brand">{{title}}</a>
-      </div>
-      <ul class ="nav navbar-nav" *ngIf="identity">
+    </div>
+      <ul class ="nav navbar-nav" *ngIf="identity"> <!--Mientras no se este logeado no se muestra el menu superior-->
           <li>
             <a href="#"><span class="glyphicon glyphicon-home"> Inicio</span></a>
           </li>
@@ -19,7 +19,17 @@
           </li>
 
       </ul>
-      
+
+      <ul class="navbar navbar-nav navbar-right" *ngIf="!identity">
+          <li>
+            <a [routerLink="['/login']"  [routerLinkActive]="['active']" href="#"><span class="glyphicon glyphicon-log-in">Login</span></a>
+          </li>
+
+          <li>
+            <a href="#" [routerLink="['/registro']"  [routerLinkActive]="['active']" ><span class="glyphicon glyphicon-user">Register</span></a>
+          </li>
+      </ul>
+
     </div>
   </nav>
 </div>
