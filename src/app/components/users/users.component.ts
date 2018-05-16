@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit{
     public total;
     public pages;
     public users : User[];
-    public url: stringM
+    public url: string;
 
     constructor(
         private _route: ActivatedRoute,
