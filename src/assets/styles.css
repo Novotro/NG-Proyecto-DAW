@@ -55,7 +55,7 @@
     color: black !important;
 }
 
-.navbar-default .navbar-nav>.open>a, .navbar-default -navbar-nav>.open>a:focus{
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus{
      background: #cc1717 !important;
 }
 
@@ -69,4 +69,10 @@
 
 .imagenSubida img{
     max-width: 200px !important;
+}
+
+.navigation .avatar img{
+    max-width: 55px;
+    border-radius: 100px;
+    overflow: hidden;
 }

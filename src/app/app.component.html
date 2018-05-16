@@ -32,7 +32,7 @@
 
       <ul class="nav navbar navbar-nav navbar-right" *ngIf="identity">
           <li class="avatar">
-
+              <img src="{{url + 'get-image-user/' + identity.image }}" *ngIf="identity"/>
           </li>
 
           <li class="dropdown">

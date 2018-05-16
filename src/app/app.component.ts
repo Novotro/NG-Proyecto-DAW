@@ -1,6 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { UserService } from './services/user.service';
 import { Router, ActivatedRoute, Params} from '@angular/router'; //Componentes que usaremos para redireccionar
+import { GLOBAL } from './services/global';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { Router, ActivatedRoute, Params} from '@angular/router'; //Componentes q
 export class AppComponent implements OnInit, DoCheck{
   public title:string;
   public identity;
+  public url :string;
 
 
   constructor(
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit, DoCheck{
       private _userService : UserService
   ){
       this.title  = 'Ruben Diaz WEBAPP ';
+      this.url = GLOBAL.url;
   }
 
   ngOnInit(){
