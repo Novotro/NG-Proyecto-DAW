@@ -69,6 +69,8 @@ getToken(){
             //Persistir token del usuario
             localStorage.setItem('token', this.token);
             //Conseguir contadores o estadisticas
+
+            this._router.navigate(['/']);
         }
     },
     error =>{

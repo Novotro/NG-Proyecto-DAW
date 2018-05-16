@@ -62,3 +62,7 @@
 .navigation .navbar .dropdown .dropdown-menu a:hover{
  background: #eee !important;
 }
+
+.pointer{
+    cursor: pointer;
+}

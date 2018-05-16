@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { UserService } from './services/user.service';
+import { Router, ActivatedRoute, Params} from '@angular/router'; //Componentes que usaremos para redireccionar
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,8 @@ export class AppComponent implements OnInit, DoCheck{
 
 
   constructor(
+      private _route : ActivatedRoute,
+      private _router : Router,
       private _userService : UserService
   ){
       this.title  = 'Ruben Diaz WEBAPP ';
@@ -27,4 +30,9 @@ export class AppComponent implements OnInit, DoCheck{
       this.identity = this._userService.getIdentity();
   }
 
+  logout(){
+      localStorage.clear();
+      this.identity = null;
+      this._router.navigate(['/']); //Redireccion a home cuando se delogee
+  }
 }
