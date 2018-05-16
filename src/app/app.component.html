@@ -20,15 +20,17 @@
 
       </ul>
 
-      <ul class="navbar navbar-nav navbar-right" *ngIf="!identity">
+      <ul class="nav navbar navbar-nav navbar-right" *ngIf="!identity">
           <li>
-            <a [routerLink="['/login']"  [routerLinkActive]="['active']" href="#"><span class="glyphicon glyphicon-log-in">Login</span></a>
+            <a [routerLink]="['/login']"  [routerLinkActive]="['active']" href="#"><span class="glyphicon glyphicon-log-in"> Login</span></a>
           </li>
 
           <li>
-            <a href="#" [routerLink="['/registro']"  [routerLinkActive]="['active']" ><span class="glyphicon glyphicon-user">Register</span></a>
+            <a href="#" [routerLink]="['/registro']"  [routerLinkActive]="['active']" ><span class="glyphicon glyphicon-user"> Register</span></a>
           </li>
       </ul>
+
+
 
     </div>
   </nav>

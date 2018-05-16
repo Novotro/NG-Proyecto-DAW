@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css'],  //Estilos asociados
   providers: [UserService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, DoCheck{
   public title:string;
   public identity;
 
@@ -19,7 +19,12 @@ export class AppComponent {
   }
 
   ngOnInit(){
-      this.identity = this._userService.getIdentity();
+      this.identity = this._userService.getIdentity(); // Objeto del usuario identificado
       console.log(this.identity);
   }
+
+  ngDoCheck(){ // Cada vez que se hace un cambio(refresco dinamico de la web)
+      this.identity = this._userService.getIdentity();
+  }
+
 }

@@ -8,9 +8,9 @@
   margin-bottom: 20px;
 }
 
-
-
-
+.active{
+    background: #cc1717;
+}
 
 /*Cabecera*/
 
@@ -25,6 +25,10 @@
 .navigation .navbar{
   border-radius: 0px !important;
   border: none;
+}
+
+.navigation .navbar a:hover{
+ background: #cc1717 !important;
 }
 
 
