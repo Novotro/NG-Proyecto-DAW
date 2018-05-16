@@ -50,3 +50,15 @@
 .jumbotron p a+a{
     margin-left: 10px !important;
 }
+
+.navigation .navbar .dropdown-menu *{
+    color: black !important;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default -navbar-nav>.open>a:focus{
+     background: #cc1717 !important;
+}
+
+.navigation .navbar .dropdown .dropdown-menu a:hover{
+ background: #eee !important;
+}
