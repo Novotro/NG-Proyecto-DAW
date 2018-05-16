@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit{
         if(!this.identity || !this.identity._id){
             this.status= 'error';
         }else{
-            this.status ='success';
             //Persistir datos del usuario en el LocalStorage
             localStorage.setItem('identity', JSON.stringify(this.identity));
             //Conseguir token
@@ -65,12 +64,10 @@ getToken(){
         if(this.token.length <= 0){
             this.status= 'error';
         }else{
-            this.status ='success';
             //Persistir token del usuario
             localStorage.setItem('token', this.token);
             //Conseguir contadores o estadisticas
-
-            this._router.navigate(['/']);
+            this.getCounters();
         }
     },
     error =>{
@@ -82,6 +79,22 @@ getToken(){
     }
 );
 }
+
+
+    getCounters(){
+        this._userService.getCounter().subscribe(
+            response =>{
+                // if(response.following.length>)
+                localStorage.setItem('stats', JSON.stringify(response));
+
+                this.status ='success';
+                this._router.navigate(['/']);
+            },
+            error =>{
+                console.log(<any>error)
+            }
+        )
+    }
 
 
 }
