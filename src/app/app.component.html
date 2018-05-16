@@ -7,7 +7,7 @@
     </div>
       <ul class ="nav navbar-nav" *ngIf="identity"> <!--Mientras no se este logeado no se muestra el menu superior-->
           <li>
-            <a href="#"><span class="glyphicon glyphicon-home"> Inicio</span></a>
+            <a [routerLink]="['/home']" [routerLinkActive]="['active']"><span class="glyphicon glyphicon-home"> Inicio</span></a>
           </li>
 
           <li>

@@ -10,13 +10,15 @@ import { HttpClientModule } from '@angular/common/http'; //Modulo para hacer pet
 import { AppComponent } from './app.component';
 import { LoginComponent} from './components/login/login.component';
 import { RegisterComponent} from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

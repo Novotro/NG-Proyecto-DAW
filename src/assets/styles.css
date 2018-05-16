@@ -39,3 +39,14 @@
 .navigation ul li *{
   color: white !important;
 }
+
+
+.jumbotron{
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center !important;
+}
+
+.jumbotron p a+a{
+    margin-left: 10px !important;
+}
