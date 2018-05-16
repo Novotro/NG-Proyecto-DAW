@@ -33,6 +33,7 @@ export class UsersComponent implements OnInit{
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
+
     }
 
     ngOnInit(){
@@ -45,6 +46,10 @@ export class UsersComponent implements OnInit{
         this._route.params.subscribe(params =>{
             let page = +params['page'];
             this.page = page;
+
+            if(!params['page']){
+                page=1;
+            }
 
             if(!page){
                 page = 1;
