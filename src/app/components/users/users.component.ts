@@ -21,7 +21,8 @@ export class UsersComponent implements OnInit{
     public status: string;
     public total;
     public pages;
-    public users : Users[];
+    public users : User[];
+    public url: stringM
 
     constructor(
         private _route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class UsersComponent implements OnInit{
         this.title = "Gente";
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
+        this.url = GLOBAL.url;
     }
 
     ngOnInit(){
@@ -67,11 +69,11 @@ export class UsersComponent implements OnInit{
                     console.log(response);
                 }else{
                     this.total = response.total;
-                    this.user = response.users;
+                    this.users = response.users;
                     this.pages = response.pages;
 
-                    if(page > this.response){
-                        this._route.navigate(['/gente'], 1);
+                    if(page > this.pages){
+                        this._router.navigate(['/gente/1']);
                     }
                 }
 

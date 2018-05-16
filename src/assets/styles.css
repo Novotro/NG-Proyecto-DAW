@@ -76,3 +76,20 @@
     border-radius: 100px;
     overflow: hidden;
 }
+
+.item-user .image_user img{
+    max-width: 100px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-right: 20px;
+
+}
+
+.item-user .user_name .nickname{
+    color :#969393;
+}
+
+.item-user .user_name .name-surname a{
+    color: #555;
+    font-weight: bold;
+}
