@@ -2,7 +2,7 @@
 .h1Strong{
   font-size: 35px;
   font-weight: bold;
-  margin-left: 13px;
+  /* margin-left: 13px; */
   border-bottom: 1px solid #eee;
   padding-bottom: 15px;
   margin-bottom: 20px;
@@ -84,7 +84,7 @@
     margin-right: 20px;
 
 }
-
+/*Usuarios*/
 .item-user .user_name .nickname{
     color :#969393;
 }
@@ -93,8 +93,79 @@
     color: #555;
     font-weight: bold;
 }
+/* Sidebar */
+.sidebar-32{
+    width: 32% !important;;
+    padding: 0px !important;
+}
 
-.avatar2 img{
-    max-width: 400px !important;
-    padding:10px;
+#user-card{
+    padding : 20px;
+    width: 30%;
+}
+
+#user-card .avatar img{
+    max-width: 110px !important;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+#user-card .name-surname{
+    font-weight: 300;
+    font-size : 17px;
+}
+
+
+#user-card .name-surname a{
+    color:  #555;
+}
+#user-card .name-surname .nickname{
+    color:  #969393;
+}
+
+#user-card .label-stats,
+#user-card .number-stats{
+    display: block;
+    text-align:center;
+    transition: all 300ms;
+}
+
+#user-card .label-stats{
+    color: #555;
+    font-weight:  bold;
+}
+#user-card .number-stats{
+    color: green;
+    font-weight:  bold;
+}
+
+#user-card .stats a:hover .number-stats{
+    color: #cc1717;
+    font-weight:  bold;
+}
+
+#user-card .stats{
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+}
+
+#user-card .stats a{
+    text-decoration: none;
+}
+
+#user-card .following-data{
+    float: left;
+    padding-left: 18px;
+    padding-right: 18px;
+    margin-top : 10px;
+    border-right: 2px solid #eee;
+}
+
+#user-card .following-data:first-child{
+    padding-left : 0;
+}
+
+#user-card .following-data:last-child{
+    border: none
 }
