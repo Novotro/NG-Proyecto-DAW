@@ -140,7 +140,6 @@ export class UsersComponent implements OnInit{
                 if(search != -1){
                     this.follows.splice(search,1);
                 }
-
             },
             error => {
                 var errorMessage = <any>error;
