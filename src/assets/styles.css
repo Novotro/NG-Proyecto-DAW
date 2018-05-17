@@ -104,6 +104,11 @@
     width: 30%;
 }
 
+#new-publication{
+    padding:18px;
+    padding-left: 5px;
+}
+
 #user-card .avatar img{
     max-width: 110px !important;
     border-radius: 100px;
