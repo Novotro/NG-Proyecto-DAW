@@ -93,3 +93,8 @@
     color: #555;
     font-weight: bold;
 }
+
+.avatar2 img{
+    max-width: 400px !important;
+    padding:10px;
+}
