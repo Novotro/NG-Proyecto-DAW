@@ -24,7 +24,7 @@
                         </div>
 
                 <!-- Seguir/dejar de seguir -->
-                <div class="pull-right">
+                <div class="pull-right" *ngIf="user._id != identity._id">
                     <button class="btn btn-success" *ngIf="follows.toString().indexOf(user._id) < 0 "  (click)="followUser(user._id)">
                         <span class="glyphicon glyphicon-plus-sign"></span>Seguir
                     </button>
