@@ -30,7 +30,7 @@
                     </button>
 
 
-                    <button class="btn btn-primary" *ngIf="follows.toString().indexOf(user._id) >= 0" (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)"  [class.btn-danger]="user._id == followUserOver">
+                    <button class="btn btn-primary" *ngIf="follows.toString().indexOf(user._id) >= 0" (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)"  [class.btn-danger]="user._id == followUserOver" (click)="unfollowUser(user._id)">
 
                         <span *ngIf="user._id == followUserOver ; else following">
                             <span class="glyphicon glyphicon-minus-sign"></span>Dejar de seguir
