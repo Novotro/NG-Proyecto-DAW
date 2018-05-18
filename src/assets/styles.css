@@ -63,6 +63,10 @@
  background: #eee !important;
 }
 
+.dropdown{
+    margin-right: 15px;
+}
+
 .pointer{
     cursor: pointer;
 }
@@ -77,14 +81,23 @@
     overflow: hidden;
 }
 
-.item-user .image_user img{
+
+/*Usuarios*/
+
+.item-user .image_user img,
+.item-publication .image_user img{
     max-width: 100px;
     border-radius: 100px;
     overflow: hidden;
     margin-right: 20px;
 
 }
-/*Usuarios*/
+
+.item-publication .user-name{
+    margin-top: 10px;
+
+}
+
 .item-user .user_name .nickname{
     color :#969393;
 }
