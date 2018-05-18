@@ -204,4 +204,31 @@
 
 #data-profile{
     min-height: 500px;
+    text-align : left;
+}
+
+#data-profile .avatar img{
+    max-width: 185px;
+    border-radius: 200px;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+#data-profile .user-name .name{
+    font-size: 24px;
+    font-weight: bold;
+    color: #555;
+
+}
+
+#data-profile .user-name{
+    margin-top:40px;
+}
+
+
+#data-profile .user-name .nick{
+    font-size: 24px;
+    font-weight: normal;
+    color: grey;
+
 }

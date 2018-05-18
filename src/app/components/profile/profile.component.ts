@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit{
         this._userService.getCounter(id).subscribe(
             response =>{
                 this.stats = response;
-            }
+            },
             error =>{
                 console.log(<any>error)
             }
