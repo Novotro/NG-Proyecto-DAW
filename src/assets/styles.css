@@ -105,6 +105,7 @@
 }
 
 #new-publication{
+    width: 30%;
     padding:18px;
     padding-left: 5px;
 }
@@ -173,4 +174,10 @@
 
 #user-card .following-data:last-child{
     border: none
+}
+
+/*Timeline */
+
+#publications{
+    min-height: 500px;
 }
