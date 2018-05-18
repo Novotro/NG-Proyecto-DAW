@@ -2,8 +2,21 @@
     <h1 class="h1Strong">{{title}}</h1>
 
     <div id="publications">
+        <div *ngFor="let publication of publications" class="item-publication">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4>{{publication.user.name + ' ' + publication.user.surname}}</h4>
 
+                        <div class="publication-text pull-left">
+                            {{publication.text}}
+                        </div>
+
+                    </div>
+                </div>
+        </div>
     </div>
+
+
 </div>
 
 <sidebar></sidebar>
