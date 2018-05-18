@@ -89,7 +89,7 @@ export class TimelineComponent implements OnInit{
     }
 
     refresh(event){
-        this.getPublications(this.page);
+        this.getPublications(1);
     }
 
 
