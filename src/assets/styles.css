@@ -198,3 +198,10 @@
 #publications .date{
     color: grey;
 }
+
+
+/* Perfil */
+
+#data-profile{
+    min-height: 500px;
+}
