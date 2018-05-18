@@ -26,7 +26,7 @@ export class PublicationService{
         return this._http.get(this.url+'publications/'+page, {headers:headers});
     }
 
-    deletePublication(token, id) : Observable<any>{{
+    deletePublication(token, id) : Observable<any>{
         let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                        .set('Authorization', token);
 

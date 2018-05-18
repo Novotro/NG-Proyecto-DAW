@@ -4,6 +4,7 @@ import { routing, appRoutingProviders} from './app.routing'; //Enrutador
 import { FormsModule } from '@angular/forms';
 //import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http'; //Modulo para hacer peticiones ajax a una api
+import { MomentModule } from 'angular2-moment';
 
 
 //Componentes
@@ -31,7 +32,8 @@ import { TimelineComponent } from './components/timeline/timeline.component';
     BrowserModule,
     FormsModule,
     routing,
-    HttpClientModule
+    HttpClientModule,
+    MomentModule
   ],
   providers: [
     appRoutingProviders
