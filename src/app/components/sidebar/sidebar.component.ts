@@ -41,16 +41,11 @@ export class SidebarComponent implements OnInit{
         console.log("sidebar.component ha sido cargado!!");
     }
 
-    onSubmit(form){
+    onSubmit(form, $event){
         this._publicationService.addPublication(this.token,this.publication).subscribe(
             response =>{
                 if(response.publication){
                     if(this.filesToUpload && this.filesToUpload.length){
-                        this.status = 'success';
-                        form.reset();
-                        this._router.navigate(['/timeline']);
-
-                    }else{
                         //Subir imagen
                         this._uploadService.makeFileRequest(this.url+'upload-image-pub/'+response.publication._id, [], this.filesToUpload, this.token, 'image')
                                            .then((result:any)=>{
@@ -59,7 +54,14 @@ export class SidebarComponent implements OnInit{
                                                this.status = 'success';
                                                form.reset();
                                                this._router.navigate(['/timeline']);
+                                                this.sended.emit({send: 'true'});
                                            });
+
+                    }else{
+                       this.status = 'success';
+                       form.reset();
+                       this._router.navigate(['/timeline']);
+                       this.sended.emit({send: 'true'});
 
                     }
 
@@ -89,7 +91,6 @@ export class SidebarComponent implements OnInit{
     @Output() sended = new EventEmitter();
     sendPublication(event){
         console.log(event);
-            this.sended.emit({send: 'true'});
     }
 
 
