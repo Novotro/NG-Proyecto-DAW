@@ -10,7 +10,7 @@
 
 
     <div class="name-surname pull-left">
-        <a href=#>
+        <a [routerLink]="['/profile', identity._id]">
             {{identity.name + ' '+ identity.surname}}
         </a>
         <p class="nickname">
