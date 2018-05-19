@@ -24,6 +24,9 @@
                         <h4 class="publication-text pull-left">
                             {{publication.text}}
                         </h4>
+                        <div class="col-lg-12" *ngIf="publication && publication.file">
+                                    <img src="{{url + 'get-image-pub/' + publication.file}}" class="col-lg-12"/>
+                        </div>
 
                     </div>
                 </div>

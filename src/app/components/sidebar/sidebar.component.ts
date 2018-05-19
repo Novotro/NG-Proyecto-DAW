@@ -4,7 +4,7 @@ import { GLOBAL } from '../../services/global';
 import { Publication } from '../../models/publication';
 import { PublicationService } from '../../services/publication.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import {UploadService} from '../../services/upload.service';
+import { UploadService } from '../../services/upload.service';
 
 @Component({
     selector: 'sidebar',
@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit{
     constructor(
         private _userService : UserService,
         private _publicationService : PublicationService,
-        private _uploadService :UploadService,
+        private _uploadService : UploadService,
         private _route : ActivatedRoute,
         private _router : Router
     ){
@@ -46,10 +46,9 @@ export class SidebarComponent implements OnInit{
             response =>{
                 if(response.publication){
                     //Subir imagen
-
-                    this._uploadService.makeFileRequest(this.url+'upload-image-pub/'+response.publication,_id,[], this.filesoUpload, this.token, 'image')
+                    this._uploadService.makeFileRequest(this.url+'upload-image-pub/'+response.publication._id, [], this.filesToUpload, this.token, 'image')
                                        .then((result:any)=>{
-                                           this.publication.file = result.images
+                                           this.publication.file = result.image;
 
                                            this.status = 'success';
                                            form.reset();
@@ -70,9 +69,9 @@ export class SidebarComponent implements OnInit{
         );
     }
 
-    public filesoUpload : Array<File>;
+    public filesToUpload : Array<File>;
     fileChangeEvent(fileInput : any){
-        this.filesoUpload = <Array<File>>fileInput.target.files;
+        this.filesToUpload = <Array<File>>fileInput.target.files;
     }
 
 
