@@ -62,7 +62,6 @@ export class SidebarComponent implements OnInit{
                        form.reset();
                        this._router.navigate(['/timeline']);
                        this.sended.emit({send: 'true'});
-
                     }
 
 
