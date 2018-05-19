@@ -79,13 +79,12 @@ export class TimelineComponent implements OnInit{
 
     public noMore = false;
     viewMore(){
-        //Si se llega al total de publicaciones, no hay mas que ver
-        if(this.publications.length == this.total){
-            this.noMore = true;
-        }else{
             this.page +=1;
-            this.getPublications(this.page, true);
+        //Si se llega al total de publicaciones, no hay mas que ver
+        if(this.page == this.pages){
+            this.noMore = true;
         }
+        this.getPublications(this.page, true);
     }
 
     refresh(event){
