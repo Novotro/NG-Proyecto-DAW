@@ -5,7 +5,7 @@
     <div class="people" *ngIf="messages">
         <div *ngFor="let message of messages" class="item-user">
             <!---Listado-->
-            <div class="panel panel-default">
+            <div class="panel panel-default" *ngIf="message.emitter">
                 <div class="panel-body">
 
                     <div class="image_user pull-left">
