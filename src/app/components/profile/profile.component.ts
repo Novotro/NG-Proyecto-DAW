@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit{
             },
             error =>{
                 console.log(<any>error)
-                this._router.navigate(['/profile',this.identity._id]);
+                this._router.navigate(['/perfil',this.identity._id]);
             }
         );
     }

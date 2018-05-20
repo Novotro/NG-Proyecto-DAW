@@ -83,7 +83,7 @@
 
 
 /*Usuarios*/
-
+.people .image_user img,
 .item-user .image_user img,
 .item-publication .image_user img{
     max-width: 100px;
@@ -248,4 +248,10 @@
     font-size: 20px;
     line-height: 35px;
     color: #555;
+}
+
+/* Gente */
+
+.people{
+    min-height: 500px;
 }

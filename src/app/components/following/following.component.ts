@@ -9,11 +9,11 @@ import { FollowService } from '../../services/follow.service';
 
 
 @Component({
-    selector: 'users',
-    templateUrl: './users.component.html',
+    selector: 'following',
+    templateUrl: './following.component.html',
     providers: [UserService,FollowService]
 })
-export class UsersComponent implements OnInit{
+export class FollowingComponent implements OnInit{
     public title: string;
     public identity;
     public token;
@@ -26,6 +26,8 @@ export class UsersComponent implements OnInit{
     public users : User[];
     public url: string;
     public follows;
+    public following;
+    public userPageId;
 
     constructor(
         private _route: ActivatedRoute,
@@ -33,11 +35,10 @@ export class UsersComponent implements OnInit{
         private _userService: UserService,
         private _followService : FollowService
     ){
-        this.title = "Gente";
+        this.title = "Usuarios seguidos por";
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
-
     }
 
     ngOnInit(){
@@ -48,7 +49,9 @@ export class UsersComponent implements OnInit{
 
     actualPage(){
         this._route.params.subscribe(params =>{
+            let user_id = params['id'];
             let page = +params['page'];
+            this.userPageId = user_id;
             this.page = page;
 
             if(!params['page']){
@@ -65,22 +68,25 @@ export class UsersComponent implements OnInit{
                 }
             }
             //Devolver listado de usuarios
-            this.getUsers(page);
+            this.getFollows(user_id,page);
 
         });
     }
 
-    getUsers(page){
-        this._userService.getUsers(page).subscribe(
+    getFollows(user_id,page){
+        this._followService.getFollowing(this.token, user_id, page).subscribe(
             response =>{
-                if(!response.users){
+                if(!response.follows){
                     this.status = 'error';
                     console.log(response);
                 }else{
+
                     this.total = response.total;
-                    this.users = response.users;
+                    this.following = response.follows;
                     this.pages = response.pages;
                     this.follows = response.users_following;
+                    console.log(response);
+
                     if(page > this.pages){
                         this._router.navigate(['/gente/1']);
                     }
