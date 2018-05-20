@@ -67,8 +67,8 @@ export class FollowingComponent implements OnInit{
                     this.prev_page= 1;
                 }
             }
-            //Devolver listado de usuarios
-            this.getFollows(user_id,page);
+            //Devolver usuario
+            this.getUser(user_id, page);
 
         });
     }
@@ -80,7 +80,6 @@ export class FollowingComponent implements OnInit{
                     this.status = 'error';
                     console.log(response);
                 }else{
-
                     this.total = response.total;
                     this.following = response.follows;
                     this.pages = response.pages;
@@ -104,6 +103,30 @@ export class FollowingComponent implements OnInit{
 
         );
     }
+    public user : User;
+    getUser(user_id,page){
+        this._userService.getUser(user_id).subscribe(
+            response =>{
+                if(response.user){
+                    this.user = response.user;
+                    //Devolver listado de usuarios
+                    this.getFollows(user_id,page);
+                }else{
+                    this._router.navigate(['/home']);
+                }
+            },
+            error =>{
+                var errorMessage = <any>error;
+                console.log(errorMessage);
+
+                if(errorMessage != null){
+                    this.status = 'error';
+                }
+            }
+        );
+    }
+
+
 
     public followUserOver;
     mouseEnter(user_id){
