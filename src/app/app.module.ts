@@ -2,10 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing, appRoutingProviders} from './app.routing'; //Enrutador
 import { FormsModule } from '@angular/forms';
-//import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http'; //Modulo para hacer peticiones ajax a una api
 import { MomentModule } from 'angular2-moment';
 
+//Modulo custom
+import { MessagesModule } from './messages/messages.module';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -41,7 +42,8 @@ import { FollowedComponent } from './components/followed/followed.component';
     FormsModule,
     routing,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    MessagesModule
   ],
   providers: [
     appRoutingProviders
