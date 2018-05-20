@@ -30,7 +30,7 @@ export class AddComponent implements OnInit{
 
 
     ){
-        this.title= 'Enviar mensaje';        
+        this.title= 'Enviar mensaje';
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
@@ -39,5 +39,32 @@ export class AddComponent implements OnInit{
 
     ngOnInit(){
         console.log('add cargado...');
+        this.getMyFollows();
+    }
+
+    onSubmit(form){
+        this._messageService.addMessage(this.token, this.message).subscribe(
+            response =>{
+                if(response.message){
+                    this.status = "success";
+                    form.reset();
+                }
+            },
+            error =>{
+                this.status= "error";
+                console.log(<any>error);
+            }
+        );
+    }
+
+    getMyFollows(){
+        this._followService.getMyFollows(this.token).subscribe(
+            response =>{
+                this.follows = response.follows;
+            },
+            error=>{
+                console.log(<any>error);
+            }
+        );
     }
 }
