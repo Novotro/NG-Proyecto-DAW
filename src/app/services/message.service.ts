@@ -8,7 +8,7 @@ import { GLOBAL } from './global';
 export class MessageService{
         public url: string;
 
-        constructor(privaye _http: HtppClient){
+        constructor(private _http: HtppClient){
             this.url = GLOBAL.url;
         }
 
@@ -28,7 +28,7 @@ export class MessageService{
         getEmittMessages(token, page=1): Observable<any>{
             let headers = new HttpHeaders().set('Content-Type','application/json')
                                            .set('Authorization', this.getToken());
-            return this._http.get(this.url+'messages/'+page, {headers: headers});  
+            return this._http.get(this.url+'messages/'+page, {headers: headers});
         }
 
 
