@@ -13,7 +13,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FollowingComponent } from './components/following/following.component';
 import { FollowedComponent } from './components/followed/followed.component';
 import { UserGuard } from './services/user.guard';
-
+import { MapsComponent} from './components/maps/maps.component';
 
 
 const appRoutes: Routes = [
@@ -28,6 +28,7 @@ const appRoutes: Routes = [
   {path: 'perfil/:id', component: ProfileComponent, canActivate:[UserGuard]},
   {path: 'siguiendo/:id/:page', component: FollowingComponent, canActivate:[UserGuard]},
   {path: 'seguidores/:id/:page', component: FollowedComponent, canActivate:[UserGuard]},
+  {path: 'viajes', component: MapsComponent, canActivate:[UserGuard]},
   {path: '**', component: HomeComponent}
 
 ];
