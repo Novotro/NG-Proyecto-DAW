@@ -62,8 +62,27 @@ export class MapsComponent implements OnInit{
     }
 
 
-    onSubmit(){
+    onSubmit(marcas){
         this.sendMarkers();
+        this.viewMarkers(marcas);
+    }
+
+    //Borrar todos los marcadores
+    clearMap(){
+        this.markers= [];
+    }
+
+    //Borrar un marcador en concreto
+    deleteMarker(posicion){
+        this.markers.splice(posicion,1);
+        this.renameMarkers();
+    }
+
+    //Poner las letras en orden
+    renameMarkers(){
+        // for(var i=0 ; i<= this.markers.length ; i++){
+        //     this.markers[i].label : this.letras[i];
+        // }
     }
 
     mapClicked($event: MouseEvent) {
@@ -90,6 +109,12 @@ export class MapsComponent implements OnInit{
     public filesToUpload : Array<File>;
     fileChangeEvent(fileInput : any){
         this.filesToUpload = <Array<File>>fileInput.target.files;
+    }
+
+    //Transformar las marcas de la vista en un Array
+    viewMarkers(marcas){
+        this.markersViajes = marcas;
+        console.log(this.markersViajes);
     }
 
 
