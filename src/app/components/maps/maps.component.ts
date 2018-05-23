@@ -43,4 +43,9 @@ export class MapsComponent implements OnInit{
         console.log('Profile.component cargado correctamente');
     }
 
+
+    onSubmit(){
+        
+    }
+
 }
