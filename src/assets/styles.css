@@ -359,3 +359,24 @@ html, body {
 .people{
     min-height: 500px;
 }
+
+
+/* MAPS Google*/
+
+agm-map{
+    height: 300px;
+}
+
+area{
+    background-color:  blue;
+}
+
+agm-marker{
+    color:blue;
+    background-color: blue;
+}
+
+
+.viajes{
+    height: 500px;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { Message } from '../../../models/message';
+import { User } from '../../../models/user';
 import { MessageService } from '../../../services/message.service';
 import { UserService } from '../../../services/user.service';
 import { Follow } from '../../../models/follow';
@@ -20,6 +21,7 @@ export class AddComponent implements OnInit{
     public url : string;
     public status: string;
     public follows;
+    public users: User;
 
     constructor(
         private _route: ActivatedRoute,
@@ -40,6 +42,7 @@ export class AddComponent implements OnInit{
     ngOnInit(){
         console.log('add cargado...');
         this.getMyFollows();
+        this.getUsers();
     }
 
     onSubmit(form){
@@ -49,6 +52,7 @@ export class AddComponent implements OnInit{
                     this.status = "success";
                     form.reset();
                 }
+
             },
             error =>{
                 this.status= "error";
@@ -67,4 +71,19 @@ export class AddComponent implements OnInit{
             }
         );
     }
+
+
+    getUsers(){
+        this._userService.getUsers().subscribe(
+            response =>{
+                this.users = response.users;
+                console.log(this.users);
+            },
+            error=>{
+                console.log(<any>error);
+            }
+        );
+    }
+
+
 }

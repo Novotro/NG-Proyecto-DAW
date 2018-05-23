@@ -5,6 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; //Modulo para hacer peticiones ajax a una api
 import { MomentModule } from 'angular2-moment';
 
+import * as Observable from 'rxjs';
+
+//Modulo de google maps
+import { AgmCoreModule } from '@agm/core';
+
+
 //Modulo custom
 import { MessagesModule } from './messages/messages.module';
 
@@ -21,6 +27,7 @@ import { PublicationsComponent } from './components/publications/publications.co
 import { ProfileComponent } from './components/profile/profile.component';
 import { FollowingComponent } from './components/following/following.component';
 import { FollowedComponent } from './components/followed/followed.component';
+import { MapsComponent} from './components/maps/maps.component';
 
 
 //Servicios
@@ -40,7 +47,8 @@ import { UserGuard } from './services/user.guard';
     PublicationsComponent,
     ProfileComponent,
     FollowingComponent,
-    FollowedComponent
+    FollowedComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +56,10 @@ import { UserGuard } from './services/user.guard';
     routing,
     HttpClientModule,
     MomentModule,
-    MessagesModule
+    MessagesModule,
+    AgmCoreModule.forRoot({
+     apiKey: 'AIzaSyBBD-O0cX5KR21c03_5RFQpqTb4cHvgIAo'
+   })
   ],
   providers: [
     appRoutingProviders,
