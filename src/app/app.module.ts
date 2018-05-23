@@ -58,7 +58,7 @@ import { UserGuard } from './services/user.guard';
     MomentModule,
     MessagesModule,
     AgmCoreModule.forRoot({
-     apiKey: 'AIzaSyDhYy5jV87RUJ8vM1ng8Y7dl4v_NAcJdtY'
+     apiKey: 'AIzaSyBBD-O0cX5KR21c03_5RFQpqTb4cHvgIAo'
    })
   ],
   providers: [
