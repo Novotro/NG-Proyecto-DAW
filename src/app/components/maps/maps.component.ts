@@ -28,7 +28,8 @@ export class MapsComponent implements OnInit{
     public stats;
     public followed;
     public following;
-    public  markers: marker[];
+    public markers: marker[];
+    public markersViajes : marker[];
     public letras = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
     //Coordenadas de Barcelona
     public lat: number = 41.524644;
@@ -62,7 +63,7 @@ export class MapsComponent implements OnInit{
 
 
     onSubmit(){
-
+        this.sendMarkers();
     }
 
     mapClicked($event: MouseEvent) {
@@ -82,6 +83,9 @@ export class MapsComponent implements OnInit{
 
     }
 
+
+
+
     //Por si el usuario quiere subir fotos
     public filesToUpload : Array<File>;
     fileChangeEvent(fileInput : any){
@@ -91,8 +95,14 @@ export class MapsComponent implements OnInit{
 
     //Metodo para conseguir las marcas del usuario logeado
 
+    sendMarkers(){
+
+    }
+
+    //Metodo para conseguir los viajes
 
 
+    //Metodo para cambiar los markers actuales por las del viaje seleccionado
 
 }
 
