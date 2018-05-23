@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, DoCheck{
       private _router : Router,
       private _userService : UserService
   ){
-      this.title  = 'Ruben Diaz WEBAPP ';
+      this.title  = 'Teapuntas?';
       this.url = GLOBAL.url;
   }
 

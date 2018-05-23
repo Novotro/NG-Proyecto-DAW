@@ -2,6 +2,8 @@
 
 
 
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
   <a [routerLink]="['/home']" class="navbar-brand">{{title}}</a>
@@ -87,10 +89,10 @@
                 <span class="fa fa-user"> Registrarse</span>
 
               </a>
-
           </li>
 
       </ul>
+
 
 
 
@@ -144,4 +146,27 @@
 
 </nav>
 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{identity.name}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/perfil', identity._id]">Mi perfil</a>
+            <a class="dropdown-item" [routerLink]="['/mis-datos']">Mis datos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item pointer" (click)="logout()">
+              <span class="fa fa-log-out"></span>Cerrar sesión
+            </a>
+          </div>
+        </li>
+        <li class="avatar">
+            <img src="{{url + 'get-image-user/' + identity.image }}" *ngIf="identity && identity.image"/>
+        </li>
+      </ul>
+    <!--form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form-->
+  </div>
+</nav>
 <router-outlet></router-outlet>
