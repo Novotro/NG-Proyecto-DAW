@@ -263,6 +263,18 @@ agm-map{
     height: 300px;
 }
 
+area{
+    background-color:  blue;
+}
+
+agm-marker{
+    color:blue;
+    background-color: blue;
+}
+
+.gm-style div{
+    color: #fff !important;
+    font-weight: bold;}
 
 .viajes{
     height: 500px;

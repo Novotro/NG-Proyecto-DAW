@@ -6,7 +6,7 @@ import { Travels } from '../models/travels';
 import { GLOBAL } from './global';
 
 @Injectable()
-export class TravelsService{
+export class TravelService{
         public url: string;
 
         constructor(private _http: HttpClient){
@@ -20,7 +20,7 @@ export class TravelsService{
 
 
         //Metodo para actualizr los Viajes
-        
+
 
 
 }
