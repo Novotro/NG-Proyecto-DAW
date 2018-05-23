@@ -5,6 +5,7 @@ import { User } from '../../models/user';
 import { Follow } from '../../models/follow';
 import { Travels } from '../../models/travels';
 import { UserService } from '../../services/user.service';
+import { TravelService } from '../../services/travel.service';
 import { GLOBAL } from '../../services/global';
 import { FollowService } from '../../services/follow.service';
 import { MouseEvent } from '@agm/core';
