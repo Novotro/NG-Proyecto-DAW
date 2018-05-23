@@ -1,20 +1,74 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a [routerLink]="['/home']" class="navbar-brand">{{title}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto" *ngIf="identity">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/home']"><span class="fa fa-home"></span> Inicio</a>
+          </li><!--Mientras no se este logeado no se muestra el menu superior fas fa-home-->
+          <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/timeline']" [routerLinkActive]="['active']">
+                <span class="fa fa-th-list"> Timeline</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/gente']" [routerLinkActive]="['active']">
+                <span class="fa fa-user"> Gente</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/mensajes']" [routerLinkActive]="['active']">
+                <span class="fa fa-envelope"> Mensajes</span>
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/viajes']" [routerLinkActive]="['active']">
+                <span class="fa fa-paper-plane"> Viajes</span>
+              </a>
+          </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" id="registerLeftMenu" *ngIf="!identity">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/login']"  [routerLinkActive]="['active']">
+              <span class="fas fa-sign-in-alt"> Login</span>
+            </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/registro']"  [routerLinkActive]="['active']" >
+                <span class="fa fa-user"> Registrarse</span>
+              </a>
+          </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="identity">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{identity.name}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/perfil', identity._id]">Mi perfil</a>
+            <a class="dropdown-item" [routerLink]="['/mis-datos']">Mis datos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item pointer" (click)="logout()">
+              <span class="fa fa-log-out"></span>Cerrar sesión
+            </a>
+          </div>
+        </li>
+        <li class="avatar">
+            <img src="{{url + 'get-image-user/' + identity.image }}" *ngIf="identity && identity.image"/>
+        </li>
+      </ul>
+    <!--form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form-->
+  </div>
+</nav>
+<router-outlet></router-outlet>
