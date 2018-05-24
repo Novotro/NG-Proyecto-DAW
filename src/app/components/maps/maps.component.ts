@@ -120,7 +120,7 @@ export class MapsComponent implements OnInit{
 
     //Metodo para conseguir las marcas del usuario logeado
 
-    sendMarkers(marcas){
+    sendMarkers(){
 
 
     }

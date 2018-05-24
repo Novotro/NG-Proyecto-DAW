@@ -28,12 +28,12 @@ export class TravelService{
         travelById(id) : Observable<any>{
             let headers = new HttpHeaders().set('Content-Type', 'application/json'); //Defino las cabeceras HTTP
 
-            return this._http.get(this.url+'travelById/'+id, params, {headers: headers});
+            return this._http.get(this.url+'travelById/'+id, {headers: headers});
         }
 
 
         //Metodo para actualizr los Viajes
-        updateTravel(viaje,id){
+        updateTravel(viaje,id): Observable<any>{
             let params = JSON.stringify(viaje); //Convertimos el usuario a JSON
             let headers = new HttpHeaders().set('Content-Type', 'application/json'); //Defino las cabeceras HTTP
 
