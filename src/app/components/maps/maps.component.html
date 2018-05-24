@@ -5,7 +5,11 @@
               <p>
                 <label>Nombre de tu viaje</label>
                 <input type="text" name="titulo" />
+             </p>
 
+             <p>
+                 <label>Descripcion</label>
+                 <textarea name="descripcion" required></textarea>
              </p>
 
             <p>
@@ -39,3 +43,15 @@
         <sidebar></sidebar>
     </div>
 </div>
+
+
+<!--
+//Conenido del api travels
+// name: String,
+// country: String,
+// organizer: {type: Schema.ObjectId, ref: 'User'},
+// date: String,
+// status: Boolean,
+// description: String,
+// galery: [String],
+// markers: [any] -->
