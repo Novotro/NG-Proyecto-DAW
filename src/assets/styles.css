@@ -107,6 +107,58 @@ body{
 }
 
 
+/*FOOTER*/
+
+footer{
+  color: white;
+}
+footer a{
+  color: #bfffff;
+}
+footer a:hover{
+  color: white;
+}
+
+.footer-bottom{
+  background: #c21313;
+  padding: 1em;
+}
+.footer-top{
+  background: #2d4958;
+}
+.footer-middle{
+  background: linear-gradient(-90deg, yellow ,red);
+  box-shadow: 0px -6px 15px #b32424;
+  position:relative;
+  z-index:999;
+  margin-top: 2%;
+  padding-top: 2em;
+}
+/**Sub Navigation**/
+.subnavigation-container{
+  background: #3d6277;
+}
+.subnavigation .nav-link{
+  color: white;
+  font-weight: bold;
+}
+.subnavigation-container{
+  text-align: center;
+}
+.subnavigation-container .navbar{
+  display: inline-block;
+  margin-bottom: -6px; /* Inline-block margin offffset HACK -Gilron */
+}
+.col-subnav a{
+  padding: 1rem 1rem;
+  color: white;
+  font-weight: bold;
+}
+.col-subnav .active{
+  border-top:5px solid orange;
+ background: white;
+  color: black;
+}
 
 
 
