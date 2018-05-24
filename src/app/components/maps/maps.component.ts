@@ -37,7 +37,7 @@ export class MapsComponent implements OnInit{
     public maximo = this.letras.length;
     public texto: string;
     // google maps zoom level
-    public zoom: number = 8;
+    public zoom: number = 10;
 
 
     constructor(
@@ -122,6 +122,7 @@ export class MapsComponent implements OnInit{
 
     sendMarkers(){
 
+
     }
 
     //Metodo para conseguir los viajes
@@ -131,6 +132,16 @@ export class MapsComponent implements OnInit{
 
 }
 
+//Conenido del api travels
+// name: String,
+// country: String,
+// organizer: {type: Schema.ObjectId, ref: 'User'},
+// date: String,
+// status: Boolean,
+// description: String,
+// galery: [String],
+// markers: [any]
+
 
 interface marker {
     lat: number;
@@ -138,4 +149,5 @@ interface marker {
     label?: string;
     texto?: string;
     draggable: boolean;
+    fotos?: File[];
 }
