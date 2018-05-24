@@ -80,9 +80,9 @@ export class MapsComponent implements OnInit{
 
     //Poner las letras en orden
     renameMarkers(){
-        // for(var i=0 ; i<= this.markers.length ; i++){
-        //     this.markers[i].label : this.letras[i];
-        // }
+        for(var i=0 ; i<= this.markers.length ; i++){
+            this.markers[i].label = this.letras[i];
+        }
     }
 
     mapClicked($event: MouseEvent) {
