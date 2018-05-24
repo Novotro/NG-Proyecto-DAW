@@ -121,6 +121,18 @@ export class ProfileComponent implements OnInit{
 
     }
 
+    //Borrar cuenta
+    deleteAccount(){
+        this._userService.deleteAccount(this.identity._id).subscribe(
+            response =>{
+                console.log("usuario borrado");
+            },
+            error =>{
+                console.log(<any>error);
+            }
+        );
+    }
+
     public followUserOver;
     mouseEnter(user_id){
         this.followUserOver = user_id;

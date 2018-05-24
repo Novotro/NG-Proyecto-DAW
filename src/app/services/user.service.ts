@@ -90,12 +90,15 @@ export class UserService{
         return this._http.put(this.url+'update-user/'+user._id, params, {headers:headers});
     }
     //Sacar usuarios listados
-    getUsers(page = null): Observable<any>{
+    getUsers(page = null, paginar=true): Observable<any>{
         let headers = new HttpHeaders().set('Content-Type','application/json')
                                        .set('Authorization', this.getToken());
 
-        return this._http.get(this.url+'users/'+page, {headers:headers});
-
+        if(paginar){
+            return this._http.get(this.url+'users/'+page, {headers:headers});
+        }else{
+            return this._http.get(this.url+'users/'+page, {headers:headers});
+        }
     }
 
     //Sacar un usuario
@@ -107,5 +110,11 @@ export class UserService{
 
     }
 
+    deleteAccount(id) : Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type','application/json')
+                                       .set('Authorization', this.getToken());
+
+        return this._http.delete(this.url+'user-delete/'+id, {headers:headers});
+    }
 
 }

@@ -74,7 +74,7 @@ export class AddComponent implements OnInit{
 
 
     getUsers(){
-        this._userService.getUsers().subscribe(
+        this._userService.getUsers(null,false).subscribe(
             response =>{
                 this.users = response.users;
                 console.log(this.users);

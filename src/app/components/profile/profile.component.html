@@ -22,6 +22,10 @@
                 Seguir
             </button>
 
+            <button class="btn btn-success"  (click)="deleteAccount(identity._id)">
+                borrar cuenta
+            </button>
+
             <button class="btn btn-primary"
             *ngIf="user._id != identity._id && following"
             (click)="unfollowUser(user._id)"
