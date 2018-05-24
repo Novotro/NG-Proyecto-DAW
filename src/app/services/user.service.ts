@@ -114,7 +114,7 @@ export class UserService{
         let headers = new HttpHeaders().set('Content-Type','application/json')
                                        .set('Authorization', this.getToken());
 
-        return this._http.delete(this.url+'user-delete/'+id, {headers:headers});
+        return this._http.delete(this.url+'delete-user/'+id, {headers:headers});
     }
 
 }
