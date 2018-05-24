@@ -126,8 +126,12 @@ export class ProfileComponent implements OnInit{
         this._userService.deleteAccount(this.identity._id).subscribe(
             response =>{
                 console.log("usuario borrado");
+                localStorage.clear();
+                this.identity = null;
+                this._router.navigate(['/']);
             },
             error =>{
+                console.log("Error al borrar usuario");
                 console.log(<any>error);
             }
         );
