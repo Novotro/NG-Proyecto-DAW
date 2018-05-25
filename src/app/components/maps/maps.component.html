@@ -27,6 +27,7 @@
 
             <input type="submit" value="Confirmar" class="btn btn-success" />
             <input type="button" value="Borrar" class="btn btn-danger"  (click)="clearMap()"/>
+            <input type="button" value="Actualizar" class="btn btn-danger"  (click)="updateTravels()"/>
         </form>
     </div>
 
@@ -41,7 +42,7 @@
     // galery: [String],
     // markers: [any] -->
 
-    <div class="col-lg-6">
+    <div class="col-lg-9">
         <agm-map [zoom]="zoom"  [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)">
             <agm-marker *ngFor="let m of markers; let i = index"
             [label]="m.label"
@@ -52,13 +53,16 @@
             <agm-info-window *ngIf="m.texto">
                 <strong>{{m.texto}}</strong>
                 <input type="button" value="Borrar marcador" class="btn btn-danger"  (click)="deleteMarker(i)"/>
-
             </agm-info-window>
 
         </agm-marker>
     </agm-map>
+
+    <div class="marcas" >
+        <ul *ngFor="let m of markers; let i = index">
+            <li>{{m.label}} -- {{m.texto}}</li>
+        </ul>
+    </div>
 </div>
-<div class="col-lg-3">
-    <sidebar></sidebar>
-</div>
+
 </div>

@@ -32,6 +32,7 @@ export class MapsComponent implements OnInit{
     public markersViajes : marker[];
     //Viaje
     public travel : Travels;
+    public travels : [Travels];
     public letras = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
     //Coordenadas de Barcelona
     public lat: number = 41.524644;
@@ -57,7 +58,7 @@ export class MapsComponent implements OnInit{
         this.following = false;
         this.followed = false;
         this.markers = [];
-        this.travel  = new Travels("","","","",true,"",null,null);
+        this.travel  = new Travels("","","","","",true,"",null,null);
     }
 
     ngOnInit(){
@@ -66,7 +67,6 @@ export class MapsComponent implements OnInit{
 
 
     onSubmit(form){
-        this.sendMarkers();
         this.createTravel(form);
     }
 
@@ -119,6 +119,8 @@ if(this.markers.length <= 0){
     this._travelService.addTravel(this.travel).subscribe(
         response => {
             console.log("Viaje guardado");
+            this.travel._id = response.travel._id;
+            console.log(this.travel);
         },
         error =>{
             var errorMessage = <any>error;
@@ -145,17 +147,34 @@ this.markersViajes = marcas;
 console.log(this.markersViajes);
 }
 
+//Metodo para conseguir los viajes
 
-//Metodo para conseguir las marcas del usuario logeado
+getTravels(viaje){
 
-sendMarkers(){
 
 }
 
-//Metodo para conseguir los viajes
 
+//Metodo para actualizar un viajes
+updateTravels(){
+        this._travelService.updateTravel(this.travel,this.travel._id).subscribe(
+            response => {
+                console.log("Viaje actualizado");
+
+            },
+            error =>{
+                var errorMessage = <any>error;
+                console.log(errorMessage);
+
+                if(errorMessage != null){
+                    this.status = 'error';
+                }
+            }
+        );
+}
 
 //Metodo para cambiar los markers actuales por las del viaje seleccionado
+
 
 }
 

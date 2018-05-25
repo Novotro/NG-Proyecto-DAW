@@ -1,5 +1,6 @@
 export class Travels{
     constructor(
+        public _id: String,
         public name: String,
         public country: String,
         public organizer: String,
