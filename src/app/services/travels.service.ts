@@ -17,9 +17,10 @@ export class TravelService{
 
 
         //Metodo para guardar los viajes de los usuarios
-        addTravel(viaje) : Observable<any>{
+        addTravel(viaje: Travels) : Observable<any>{
             let params = JSON.stringify(viaje);
             let headers = new HttpHeaders().set('Content-Type', 'application/json'); //Defino las cabeceras HTTP
+
 
             return this._http.post(this.url+'addTravel', params, {headers: headers});
         }

@@ -7,6 +7,6 @@ export class Travels{
         public  status: Boolean,
         public  description: String,
         public  galery: [String],
-        public  markers: [any]
+        public  markers: Array<any>
     ){}
 }
