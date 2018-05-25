@@ -66,7 +66,7 @@
 
     <div  class="allTravels" *ngIf="travels != null">
         <ul *ngFor="let t of travels.travels" >
-            <li>{{t.name + ' ' + t.description}}</li>
+            <li>{{t.name + ' ' + t.description}}  <input type="button" value="seleccionar viaje" (click)="selectTravel(t._id)"/></li>
         </ul>
     </div>
 </div>

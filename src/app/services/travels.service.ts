@@ -28,7 +28,7 @@ export class TravelService{
         //Metodo para conseguir los viajes de un usuario
         travelById(id) : Observable<any>{
             let headers = new HttpHeaders().set('Content-Type', 'application/json'); //Defino las cabeceras HTTP
-
+                    
             return this._http.get(this.url+'travelById/'+id, {headers: headers});
         }
 

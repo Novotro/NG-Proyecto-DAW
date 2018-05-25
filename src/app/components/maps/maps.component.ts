@@ -73,14 +73,14 @@ export class MapsComponent implements OnInit{
     }
 
     //Borrar todos los marcadores
-clearMap(){
+    clearMap(){
     this.markers= [];
 }
 
 //Borrar un marcador en concreto
 deleteMarker(posicion){
-    this.markers.splice(posicion,1);
-    this.renameMarkers();
+this.markers.splice(posicion,1);
+this.renameMarkers();
 }
 
 //Poner las letras en orden
@@ -150,10 +150,50 @@ console.log(this.markersViajes);
 
 //Metodo para conseguir los viajes
 getTravels(){
-    this._travelService.travelList().subscribe(
+this._travelService.travelList().subscribe(
+    response => {
+        this.travels = response;
+        console.log(this.travels);
+    },
+    error =>{
+        var errorMessage = <any>error;
+        console.log(errorMessage);
+
+        if(errorMessage != null){
+            this.status = 'error';
+        }
+    }
+);
+}
+
+
+//Metodo para actualizar un viajes
+updateTravels(){
+this._travelService.updateTravel(this.travel,this.travel._id).subscribe(
+    response => {
+        console.log("Viaje actualizado");
+
+    },
+    error =>{
+        var errorMessage = <any>error;
+        console.log(errorMessage);
+
+        if(errorMessage != null){
+            this.status = 'error';
+        }
+    }
+);
+}
+
+//Metodo para cambiar el viaje por otro clicado
+
+selectTravel(id){
+    this._travelService.travelById(id).subscribe(
         response => {
-            this.travels = response;
-            console.log(this.travels);
+            this.travel = response;
+            this.markers = response.markers;
+            console.log(this.travel);
+            this._router.navigate(['/viajes']);
         },
         error =>{
             var errorMessage = <any>error;
@@ -165,27 +205,6 @@ getTravels(){
         }
     );
 }
-
-
-//Metodo para actualizar un viajes
-updateTravels(){
-        this._travelService.updateTravel(this.travel,this.travel._id).subscribe(
-            response => {
-                console.log("Viaje actualizado");
-
-            },
-            error =>{
-                var errorMessage = <any>error;
-                console.log(errorMessage);
-
-                if(errorMessage != null){
-                    this.status = 'error';
-                }
-            }
-        );
-}
-
-//Metodo para cambiar los markers actuales por las del viaje seleccionado
 
 
 }
