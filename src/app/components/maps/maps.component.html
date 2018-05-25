@@ -63,6 +63,12 @@
             <li>{{m.label}} -- {{m.texto}}</li>
         </ul>
     </div>
+
+    <div  class="allTravels" *ngIf="travels != null">
+        <ul *ngFor="let t of travels.travels" >
+            <li>{{t.name + ' ' + t.description}}</li>
+        </ul>
+    </div>
 </div>
 
 </div>

@@ -43,10 +43,10 @@ export class TravelService{
 
 
         //Metodo para conseguir todos los viajes
-        travelList(viaje) : Observable<any>{
+        travelList() : Observable<any>{
             let headers = new HttpHeaders().set('Content-Type', 'application/json'); //Defino las cabeceras HTTP
 
-            return this._http.get(this.url+'travelsList/', {headers: headers});
+            return this._http.get(this.url+'travelsList/false', {headers: headers});
         }
 
 }
