@@ -2,6 +2,8 @@
 import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { MouseEvent } from '@agm/core';
+//Jquery
+import * as $ from 'jquery';
 //Modelos
 import { User } from '../../models/user';
 import { Follow } from '../../models/follow';
@@ -30,6 +32,7 @@ export class MapsComponent implements OnInit{
     public following;
     public markers: marker[];
     public markersViajes : marker[];
+    public params;
     //Viaje
     public travel : Travels;
     public travels : Travels[];
@@ -60,11 +63,21 @@ export class MapsComponent implements OnInit{
         this.markers = [];
         this.travels = [];
         this.travel  = new Travels("","","","","",true,"",null,null);
+        this.params = "";
     }
 
     ngOnInit(){
         console.log('Profile.component cargado correctamente');
         this.getTravels();
+        this._route.params.subscribe(params =>{
+            let travel_id = params['id'];
+                if(params['id']){
+                    this.params = travel_id;
+                }
+            });
+            if(this.params!= ''){
+                this.selectTravel();
+            }
     }
 
 
@@ -79,15 +92,15 @@ export class MapsComponent implements OnInit{
 
 //Borrar un marcador en concreto
 deleteMarker(posicion){
-this.markers.splice(posicion,1);
-this.renameMarkers();
+    this.markers.splice(posicion,1);
+    this.renameMarkers();
 }
 
 //Poner las letras en orden
 renameMarkers(){
-for(var i=0 ; i<= this.markers.length ; i++){
-    this.markers[i].label = this.letras[i];
-}
+    for(var i=0 ; i<= this.markers.length ; i++){
+        this.markers[i].label = this.letras[i];
+    }
 }
 
 mapClicked($event: MouseEvent) {
@@ -153,7 +166,6 @@ getTravels(){
 this._travelService.travelList().subscribe(
     response => {
         this.travels = response;
-        console.log(this.travels);
     },
     error =>{
         var errorMessage = <any>error;
@@ -187,24 +199,25 @@ this._travelService.updateTravel(this.travel,this.travel._id).subscribe(
 
 //Metodo para cambiar el viaje por otro clicado
 
-selectTravel(id){
-    this._travelService.travelById(id).subscribe(
+selectTravel(){
+    this._travelService.travelById(this.params).subscribe(
         response => {
             this.travel = response;
-            this.markers = response.markers;
-            console.log(this.travel);
-            this._router.navigate(['/viajes']);
+            this.markers = response.travel.markers;
+            // console.log(this.travel);
+            // console.log(this.markers);
+            // console.log(response);
+        
         },
         error =>{
             var errorMessage = <any>error;
             console.log(errorMessage);
-
             if(errorMessage != null){
                 this.status = 'error';
-            }
         }
-    );
+    });
 }
+
 
 
 }

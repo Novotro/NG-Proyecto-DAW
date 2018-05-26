@@ -29,6 +29,7 @@ const appRoutes: Routes = [
   {path: 'siguiendo/:id/:page', component: FollowingComponent, canActivate:[UserGuard]},
   {path: 'seguidores/:id/:page', component: FollowedComponent, canActivate:[UserGuard]},
   {path: 'viajes', component: MapsComponent, canActivate:[UserGuard]},
+  {path: 'viajes/:id', component: MapsComponent, canActivate:[UserGuard]},
   {path: '**', component: HomeComponent}
 
 ];

@@ -20,7 +20,7 @@ export class UserService{
     register(user: User) : Observable<any>{
         let params = JSON.stringify(user); //Convertimos el usuario a JSON
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this._http.post(this.url+'register', params, {headers: headers}); // Solicitud al servidor de la API
+        return this._http.post(this.url+'register/', params, {headers: headers}); // Solicitud al servidor de la API
     }
 
     //Servicio de logeo de usuario
@@ -97,7 +97,7 @@ export class UserService{
         if(paginar){
             return this._http.get(this.url+'users/'+page, {headers:headers});
         }else{
-            return this._http.get(this.url+'users/'+page, {headers:headers});
+            return this._http.get(this.url+'users/'+paginar, {headers:headers});
         }
     }
 
