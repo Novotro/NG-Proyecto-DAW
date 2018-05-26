@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit{
         private _router : Router,
         private _userService : UserService
     ){
-        this.title = 'Identificate';
+        this.title = 'Identifícate';
         this.user = new User("","","","","","","ROLE_USER","");
     }
 

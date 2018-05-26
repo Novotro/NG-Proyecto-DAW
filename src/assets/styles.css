@@ -3,19 +3,24 @@
 html, body {
     width: 100%;
     min-height: 100%;
+
 }
 body{
+font-family: 'Open Sans', sans-serif !important;
   background: linear-gradient(yellow,orange);
   background-repeat: no-repeat;
+
   /*background-image: url(./images/worldmap.jpg);*/
 }
-.h1Strong{
-  font-size: 35px;
-  font-weight: bold;
-  /* margin-left: 13px; */
-  border-bottom: 1px solid #eee;
-  padding-bottom: 15px;
-  margin-bottom: 20px;
+
+.h1Strong,.logoNav{
+  font-family: 'Luckiest Guy', cursive;
+  color: #ffda00 !important;
+  text-shadow:  0 0 10px #ff1b00,
+                0 0 20px #ff1b00,
+                0 0 30px #ff1b00,
+                0 0 40px #ff1b00,
+                0 0 50px #ff1b00;
 }
 
 /*Cabecera*/

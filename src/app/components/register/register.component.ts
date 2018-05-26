@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit{
     private _userService : UserService
 
   ){
-    this.title = 'Registrate';
+    this.title = 'Regístrate';
     this.user = new User("","","","","","","ROLE_USER","");
   }
 
