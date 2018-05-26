@@ -14,7 +14,7 @@ font-family: 'Open Sans', sans-serif !important;
 }
 
 .h1Strong,.logoNav{
-  font-family: 'Luckiest Guy', cursive;
+  font-family: 'Luckiest Guy', cursive !important;
   color: #ffda00 !important;
   text-shadow:  0 0 10px #ff1b00,
                 0 0 20px #ff1b00,
