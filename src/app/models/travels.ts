@@ -1,5 +1,6 @@
 export class Travels{
     constructor(
+        public _id: String,
         public name: String,
         public country: String,
         public organizer: String,
@@ -7,6 +8,6 @@ export class Travels{
         public  status: Boolean,
         public  description: String,
         public  galery: [String],
-        public  markers: [any]
+        public  markers: Array<any>
     ){}
 }
