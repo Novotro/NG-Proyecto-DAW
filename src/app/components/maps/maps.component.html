@@ -4,12 +4,12 @@
         <form #mapsForm="ngForm" (ngSubmit)="onSubmit(mapsForm)" class="col-lg-12">
             <p>
                 <label>Nombre de tu viaje</label>
-                <input type="text" name="nombre" #name="ngModel"  [(ngModel)]="travel.name" class="nameMap"/>
+                <input type="text" name="nombre" #name="ngModel"  [(ngModel)]="travel.name" id="nameMap" value="{{travel.name}}"/>
             </p>
             <p>
                 <!-- Sin terminar -->
                 <label>Fecha</label>
-                <input type="date" name="fecha" #fecha="ngModel" [(ngModel)]="travel.date"  id="dateMap"/>
+                <input type="date" name="fecha" #fecha="ngModel" [(ngModel)]="travel.date"  id="dateMap" value="{{travel.date}}"/>
             </p>
 
             <p>
@@ -20,6 +20,11 @@
             <p>
                 <label>Estado</label>
                 <input id="checkBox" type="checkbox" name="estado" #status="ngModel"  [(ngModel)]="travel.status" id="statusMap" />
+            </p>
+
+            <p ng-repeat="name in travel.name">
+                    <label>{{travel.name}}</label>
+
             </p>
 
 
@@ -69,7 +74,7 @@
 
     <div  class="allTravels" *ngIf="travels != null">
         <ul *ngFor="let t of travels.travels" >
-            <li>{{t.name + ' ' + t.description}}  <input type="button" value="seleccionar viaje" (click)="ngOnInit()"[routerLink]="['/viajes', t._id]"/></li>
+            <li>{{t.name + ' ' + t.description}}  <input type="button" value="seleccionar viaje" (click)="ngOnInit()" [routerLink]="['/viajes', t._id]"/></li>
         </ul>
 
 

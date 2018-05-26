@@ -202,12 +202,11 @@ this._travelService.updateTravel(this.travel,this.travel._id).subscribe(
 selectTravel(){
     this._travelService.travelById(this.params).subscribe(
         response => {
-            this.travel = response;
+            this.travel = response.travel;
             this.markers = response.travel.markers;
-            // console.log(this.travel);
+
             // console.log(this.markers);
             // console.log(response);
-        
         },
         error =>{
             var errorMessage = <any>error;
@@ -217,6 +216,8 @@ selectTravel(){
         }
     });
 }
+
+
 
 
 
