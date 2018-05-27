@@ -3,31 +3,15 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-8 col-md-12 col-md-12 col-sm-12">
+    <div class="col-lg-8 col-md-12 col-sm-12">
       <h1 class="h1Strong">{{title}}</h1>
       <div class="people">
         <div *ngFor="let user of users" class="item-user">
           <!---Listado-->
-          <div class="panel panel-default">
+          <div class="panel">
             <div class="panel-body">
-
-              <div class="image_user pull-left">
-                <a href="#">
-                  <img src ="{{url + 'get-image-user/' + user.image}}" *ngIf="user.image" />
-                  <img src ="assets/user.png" *ngIf="!user.image" />
-                </a>
-              </div>
-              <div class="user_name pull-left">
-                <p class="name-surname">
-                  <a [routerLink]="['/perfil', user._id]">
-                    {{user.name + ' ' + user.surname}}
-                  </a>
-                </p>
-                <p class="nickname">{{user.nick}}</p>
-              </div>
-
               <!-- Seguir/dejar de seguir -->
-              <div class="pull-right" *ngIf="user._id != identity._id">
+              <div class="follow-button" *ngIf="user._id != identity._id">
                 <button class="btn btn-success" *ngIf="follows.toString().indexOf(user._id) < 0 "  (click)="followUser(user._id)">
                   <span class="fas fa-user-plus"></span> Seguir
                 </button>
@@ -46,15 +30,38 @@
 
                 </button>
               </div>
+              <div class="image_user">
+                <a href="#">
+                  <img src ="{{url + 'get-image-user/' + user.image}}" *ngIf="user.image" />
+                  <img src ="assets/user.png" *ngIf="!user.image" />
+                </a>
+              </div>
+
+              <div class="user_name">
+                <p class="name-surname">
+                  <a [routerLink]="['/perfil', user._id]">
+                    {{user.name + ' ' + user.surname}}
+                  </a>
+                </p>
+                <p class="nickname">{{user.nick}}</p>
+
+              </div>
+
+
 
 
             </div>
           </div>
         </div>
         <!-- Paginacion -->
-        <ul class="pagination pull-right">
-          <li *ngIf="page > 1 "> <a [routerLink]="['/gente', prev_page]"> Anterior </a> </li>
-          <li *ngIf="pages != page "> <a [routerLink]="['/gente', next_page]"> Siguiente </a> </li>
+        <ul class="pagination">
+          <li *ngIf="page > 1 "> <a [routerLink]="['/gente', prev_page]">
+            Anterior <i class="fas fa-arrow-alt-circle-left"></i></a>
+        </li>
+          <li *ngIf="pages != page "> <a [routerLink]="['/gente', next_page]">
+            Siguiente <i class="fas fa-arrow-alt-circle-right"></i>
+          </a>
+         </li>
         </ul>
       </div>
 

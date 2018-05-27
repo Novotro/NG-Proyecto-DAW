@@ -9,8 +9,6 @@ body{
 font-family: 'Open Sans', sans-serif !important;
   background: linear-gradient(yellow,orange);
   background-repeat: no-repeat;
-
-  /*background-image: url(./images/worldmap.jpg);*/
 }
 
 .h1Strong,.logoNav{
@@ -152,7 +150,7 @@ footer a:hover{
 }
 .subnavigation-container .navbar{
   display: inline-block;
-  margin-bottom: -6px; /* Inline-block margin offffset HACK -Gilron */
+  margin-bottom: -6px;
 }
 .col-subnav a{
   padding: 1rem 1rem;
@@ -275,7 +273,7 @@ footer a:hover{
 }
 
 #user-card .label-stats{
-    color: #555;
+    color: #ff1b00;
     font-weight:  bold;
 }
 #user-card .number-stats{
@@ -289,7 +287,7 @@ footer a:hover{
 }
 
 #user-card .stats{
-    border-top: 1px solid #eee;
+    border-top: 1px solid #ff1b00;
     margin-top: 10px;
 }
 
@@ -302,7 +300,7 @@ footer a:hover{
     padding-left: 15px;
     padding-right: 18px;
     margin-top : 10px;
-    border-right: 2px solid #eee;
+    border-right: 1px solid #ff1b00;
 }
 
 #user-card .following-data:first-child{
@@ -381,25 +379,33 @@ footer a:hover{
     color: #555;
 }
 
-/* Gente */
+/* Gente + Timeline*/
 
 .people{
     min-height: 500px;
 }
-.item-user {
+.item-user, .item-publication {
   border: 1px solid #ff1b00;
   border-radius: 10px;
   margin-bottom: 1%;
   padding: 1%;
   transition: all 1s;
 }
-.item-user:hover{
+.item-user:hover, .item-publication:hover{
   box-shadow:  0 0 10px #ff1b00,
                0 0 20px #ff1b00,
                0 0 30px #ff1b00;
 }
-.pull-right{
-  text-align: right;
+
+.publication-button{
+  float: inline-end;
+  margin-right: 0.5%;
+}
+
+.follow-button{
+  float: inline-end;
+display: inline-block;
+margin-top: 0%;
 }
 
 /* MAPS Google*/
@@ -420,4 +426,43 @@ agm-marker{
 
 .viajes{
     height: 500px;
+}
+/*modal box*/
+
+.modal.show, .modal-dialog,.modal-content{
+  border-radius: 10px;
+  border: 1px solid #ff1b00;
+}
+.modal-content{
+  color: #ff1b00;
+  background-color: yellow !important;
+  text-align: left
+}
+
+/*Paginación*/
+.pagination li a{
+  font-size: 1.5em;
+  text-decoration: none;
+  font-family: 'Luckiest Guy', cursive !important;
+  color: #ffda00 !important;
+  text-shadow:  0 0 10px #ff1b00,
+	              0 0 20px #ff1b00,
+	              0 0 30px #ff1b00,
+	              0 0 40px #ff1b00,
+	              0 0 50px #ff1b00;
+  transition: all 1s;
+}
+
+.pagination li a:hover{
+  color: #ff1b00 !important;
+  text-shadow:  0 0 10px #fff,
+	              0 0 20px #ffda00,
+	              0 0 30px #ffda00,
+	              0 0 40px #ffda00,
+	              0 0 50px #ffda00;
+}
+
+.btn{
+  color: #ffda00 !important;
+  font-family: 'Luckiest Guy', cursive !important;
 }
