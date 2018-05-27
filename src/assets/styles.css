@@ -259,7 +259,8 @@ footer a:hover{
 
 
 #user-card .name-surname a{
-    color:  #555;
+    font-family: 'Luckiest Guy', cursive !important;
+    color: #ff1b00;
 }
 #user-card .name-surname .nickname{
     color:  #969393;
@@ -309,6 +310,22 @@ footer a:hover{
 
 #user-card .following-data:last-child{
     border: none
+}
+
+
+label, #user-card .label-stats{
+  font-family: 'Luckiest Guy', cursive !important;
+  color: #ffda00 !important;
+  text-shadow:  0 0 10px #ff1b00,
+	              0 0 20px #ff1b00,
+	              0 0 30px #ff1b00,
+	              0 0 40px #ff1b00,
+	              0 0 50px #ff1b00;
+}
+
+.border.form-control-file{
+  color: #ff1b00;
+  border:1px solid#ff1b00 !important;
 }
 
 /*Timeline */
