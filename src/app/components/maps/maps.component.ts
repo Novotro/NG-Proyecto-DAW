@@ -1,5 +1,5 @@
 //Importe basico para crear un componente
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, DoCheck} from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { MouseEvent } from '@agm/core';
 //Jquery
@@ -8,17 +8,19 @@ import * as $ from 'jquery';
 import { User } from '../../models/user';
 import { Follow } from '../../models/follow';
 import { Travels } from '../../models/travels';
+import { Enrolls } from '../../models/enroll';
 //Servicios
 import { UploadService } from '../../services/upload.service';
 import { UserService } from '../../services/user.service';
 import { TravelService } from '../../services/travels.service';
 import { GLOBAL } from '../../services/global';
 import { FollowService } from '../../services/follow.service';
+import { EnrollService } from '../../services/enroll.service';
 
 @Component({
     selector:'maps',
     templateUrl: './maps.component.html',
-    providers: [UserService, FollowService,TravelService,UploadService]
+    providers: [UserService, FollowService,TravelService,UploadService,EnrollService]
 })
 export class MapsComponent implements OnInit{
     public title: string;
@@ -44,6 +46,8 @@ export class MapsComponent implements OnInit{
     public texto: string;
     // google maps zoom level
     public zoom: number = 10;
+    //Enroll
+    public enroll: Enrolls;
 
 
     constructor(
@@ -53,6 +57,7 @@ export class MapsComponent implements OnInit{
         private _followService : FollowService,
         private _travelService : TravelService,
         private _uploadService : UploadService,
+        private _enrollService : EnrollService
     ){
         this.title = 'Viajes' ;
         this.identity = this._userService.getIdentity();
@@ -64,6 +69,7 @@ export class MapsComponent implements OnInit{
         this.travels = [];
         this.travel  = new Travels("","","","","",true,"",null,null);
         this.params = "";
+        this.enroll = new Enrolls("",null);
     }
 
     ngOnInit(){
@@ -74,8 +80,9 @@ export class MapsComponent implements OnInit{
                 if(params['id']){
                     this.params = travel_id;
                 }
+                console.log(this.params);
             });
-            if(this.params!= ''){
+            if(this.params!= '' && this.params != undefined && this.params != null){
                 this.selectTravel();
             }
     }
@@ -85,8 +92,9 @@ export class MapsComponent implements OnInit{
         this.createTravel(form);
     }
 
+
     //Borrar todos los marcadores
-    clearMap(){
+clearMap(){
     this.markers= [];
 }
 
@@ -135,6 +143,7 @@ if(this.markers.length <= 0){
         response => {
             console.log("Viaje guardado");
             this.travel._id = response.travel._id;
+            this.getTravels();
         },
         error =>{
             var errorMessage = <any>error;
@@ -217,8 +226,78 @@ selectTravel(){
     });
 }
 
+updateInputs(){
+    this._travelService.travelById(this.params).subscribe(
+        response => {
+            this.travel = response.travel;
+            this.markers = response.travel.markers;
+
+            // console.log(this.markers);
+            // console.log(response);
+        },
+        error =>{
+            var errorMessage = <any>error;
+            console.log(errorMessage);
+            if(errorMessage != null){
+                this.status = 'error';
+        }
+    });
+}
 
 
+
+/* Enrolls */
+
+
+//Guardar un enroll ( participar en el markersViajes)
+saveEnroll(){
+    this.enroll.user = this.identity;
+    this.enroll.enrolled = this.travel;
+
+    if(this.travel._id == ''){
+        alert("No has seleccionado un viaje");
+
+    }else{
+        this._enrollService.saveEnroll(this.token,this.enroll).subscribe(
+            response => {
+                console.log("enroll Guardado!");
+                this.enroll = response.enroll;
+
+                // console.log(this.markers);
+                // console.log(response);
+            },
+            error =>{
+                var errorMessage = <any>error;
+                console.log(errorMessage);
+                if(errorMessage != null){
+                    this.status = 'error';
+            }
+        });
+    }
+
+
+
+}
+
+
+//Borrar un enroll
+// deleteEnroll(){
+//     this._enrollService.deleteEnroll(this.token, this.enroll._id).subscribe(
+//         response => {
+//             console.log("enroll Guardado!");
+//             this.enroll = response.enroll;
+//
+//             // console.log(this.markers);
+//             // console.log(response);
+//         },
+//         error =>{
+//             var errorMessage = <any>error;
+//             console.log(errorMessage);
+//             if(errorMessage != null){
+//                 this.status = 'error';
+//         }
+//     });
+// }
 
 
 }
