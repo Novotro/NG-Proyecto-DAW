@@ -212,7 +212,8 @@ footer a:hover{
 
 .item-publication .user-name{
     margin-top: 10px;
-
+    font-family: 'Luckiest Guy', cursive !important;
+    color: #ff1b00;
 }
 
 .item-user .user_name .nickname{
@@ -220,6 +221,7 @@ footer a:hover{
 }
 
 .item-user .user_name .name-surname a{
+    font-family: 'Luckiest Guy', cursive !important;
     color: #ff1b00;
     font-weight: bold;
 }
@@ -230,14 +232,12 @@ footer a:hover{
 /* Sidebar */
 
 #user-card{
-    padding : 20px;
-    width: 30%;
+    padding-left: 10%;
 }
 
 #new-publication{
-    width: 30%;
-    padding:18px;
-    padding-left: 5px;
+    margin-top: 10%;
+    padding-left: 5%;
 }
 
 #user-card .avatar{
@@ -342,33 +342,38 @@ label, #user-card .label-stats{
 /* Perfil */
 
 #data-profile{
-    min-height: 230px;
-    text-align : left;
+  margin-bottom: 2%;
 }
 
 #data-profile .avatar{
-    width: 150px;
-    height: 150px;
-    border-radius: 400px;
     overflow: hidden;
-    margin-right: 15px;
     margin:0px auto;
-    border: 3px solid lightblue;
+    margin-bottom: 3%;
+    padding: 3%;
+
 }
 
 #data-profile .avatar img{
-  width: 100%;
+  border-radius: 10px;
+  width: 80%;
+  border: 3px solid  #ff1b00;
+  box-shadow:  0 0 10px #ff1b00,
+	              0 0 20px #ff1b00,
+	              0 0 30px #ff1b00;
+
 }
 
 #data-profile .user-name .name{
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
-    color: #555;
+    font-family: 'Luckiest Guy', cursive !important;
+    color: #ff1b00;
 
 }
 
 #data-profile .user-name{
-    margin-top:15px;
+    margin-top: 4%;
+    margin-bottom: 2%;
 }
 
 #data-profile .user-name .label{
@@ -384,16 +389,35 @@ label, #user-card .label-stats{
 }
 
 #data-profile .stats {
-    border-left: 4px solid #ccc;
-    margin-left: 35px;
-    padding-left: 25px;
+    margin-top: 4%;
+    border-left: 4px solid #ff1b00;
     height: 180px;
 }
 
 #data-profile .stats a{
-    font-size: 20px;
+    text-decoration: none;
+    font-size: 26px;
     line-height: 35px;
-    color: #555;
+    font-family: 'Luckiest Guy', cursive !important;
+    color: #ff1b00;
+    transition: all 1s;
+}
+
+#data-profile .stats a:hover{
+  color: #ffda00 !important;
+  text-shadow:  0 0 10px #ff1b00,
+                0 0 20px #ff1b00,
+                0 0 30px #ff1b00,
+                0 0 40px #ff1b00,
+                0 0 50px #ff1b00;
+}
+
+.infoUser{
+  margin-bottom: 50%;
+}
+
+.userButtons{
+  margin-left: 1%;
 }
 
 /* Gente + Timeline*/
@@ -414,15 +438,15 @@ label, #user-card .label-stats{
                0 0 30px #ff1b00;
 }
 
-.publication-button{
+.publication-button, .pagination{
   float: inline-end;
   margin-right: 0.5%;
 }
 
 .follow-button{
   float: inline-end;
-display: inline-block;
-margin-top: 0%;
+  display: inline-block;
+  margin-top: 0%;
 }
 
 /* MAPS Google*/
