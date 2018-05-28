@@ -47,7 +47,8 @@ export class MapsComponent implements OnInit{
     // google maps zoom level
     public zoom: number = 10;
     //Enroll
-    public enroll: Enrolls;
+    public enroll;
+    public enrolleds;
 
 
     constructor(
@@ -90,6 +91,7 @@ export class MapsComponent implements OnInit{
 
     onSubmit(form){
         this.createTravel(form);
+        form.reload();
     }
 
 
@@ -262,7 +264,6 @@ saveEnroll(){
             response => {
                 console.log("enroll Guardado!");
                 this.enroll = response.enroll;
-
                 // console.log(this.markers);
                 // console.log(response);
             },
@@ -274,30 +275,50 @@ saveEnroll(){
             }
         });
     }
+}
+
+//Listado de usuarios apuntados a un viaje
+getEnrolledUsers(){
+    if(!this.enroll._id){
+        alert("No has seleccionado un viaje");
+    }else{
+        this._enrollService.getEnrolledUsers(this.token,this.enroll._id).subscribe(
+            response => {
+                console.log(response);
+                this.enrolleds = response.enrolls;
+
+            },
+            error =>{
+                var errorMessage = <any>error;
+                console.log(errorMessage);
+                if(errorMessage != null){
+                    this.status = 'error';
+            }
+        });
+
+    }
 
 
 
 }
 
 
-//Borrar un enroll
-// deleteEnroll(){
-//     this._enrollService.deleteEnroll(this.token, this.enroll._id).subscribe(
-//         response => {
-//             console.log("enroll Guardado!");
-//             this.enroll = response.enroll;
-//
-//             // console.log(this.markers);
-//             // console.log(response);
-//         },
-//         error =>{
-//             var errorMessage = <any>error;
-//             console.log(errorMessage);
-//             if(errorMessage != null){
-//                 this.status = 'error';
-//         }
-//     });
-// }
+// Borrar un enroll
+deleteEnroll(){
+    this._enrollService.deleteEnroll(this.token, this.enroll._id).subscribe(
+        response => {
+            console.log("id Enroll!  "+ this.enroll._id);
+
+            this.enroll = response.enroll;
+        },
+        error =>{
+            var errorMessage = <any>error;
+            console.log(errorMessage);
+            if(errorMessage != null){
+                this.status = 'error';
+        }
+    });
+}
 
 
 }
