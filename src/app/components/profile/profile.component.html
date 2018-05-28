@@ -1,91 +1,90 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
 
-<div class="col-lg-8">
-    <h1 class="h1Strong">
-        {{title}}
-    </h1>
-    <div  id="data-profile" *ngIf="user">
-        <div class="avatar pull-left">
-            <img src="{{url + 'get-image-user/' + user.image}}"  *ngIf="user.image"/>
-            <img src="assets/user.png" *ngIf="!user.image"/>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="h1Strong">
+        {{title+' de '+user.name + ' ' + user.surname}}
+      </h1>
+
+      <div  id="data-profile" *ngIf="user">
+        <div class="row">
+        <div class="avatar col-lg-4">
+          <img src="{{url + 'get-image-user/' + user.image}}"  *ngIf="user.image"/>
+          <img src="assets/user.png" *ngIf="!user.image"/>
         </div>
-        <div class="user-name pull-left">
-            <div class="label label-default pull-left" *ngIf="user._id != identity._id && followed">
-                Te sigue
-            </div>
-            <div class="clearfix"> </div>
-            <div class="pull-left">
-                <p class="name">{{user.name + ' ' + user.surname}}</p>
-                <p class="nick"> {{user.nick}}</p>
-            </div>
-            <div class="clearfix"> </div>
+        <div class="user-name col">
+          <div class="label label-default pull-left" *ngIf="user._id != identity._id && followed">
+            Te sigue
+          </div>
+          <div class="infoUser">
+            <p class="name">{{user.name + ' ' + user.surname}}</p>
+            <p class="nick"> {{user.nick}}</p>
+          </div>
 
-            <button class="btn btn-success"  *ngIf="!following" (click)="followUser(user._id)">
-                Seguir
-            </button>
+          <button class="btn btn-success userButtons"  *ngIf="!following" (click)="followUser(user._id)">
+            Seguir <i class="fas fa-user-plus"></i>
+          </button>
 
-            <button class="btn btn-success"  (click)="deleteAccount(identity._id)">
-                borrar cuenta
-            </button>
+          <button class="btn btn-danger userButtons"  (click)="deleteAccount(identity._id)">
+            borrar cuenta <i class="fa fa-trash"></i>
+          </button>
 
-            <button class="btn btn-primary"
-            *ngIf="user._id != identity._id && following"
-            (click)="unfollowUser(user._id)"
-            (mouseenter)="mouseEnter(user._id)"
-            (mouseleave)="mouseLeave()"
-            [class.btn-danger]="user._id == followUserOver">
-                <span *ngIf="user._id == followUserOver ; else following">
-                    Dejar de seguir
-                </span>
-                <ng-template #following>
-                    Siguiendo
-                </ng-template>
-            </button>
-        </div>
+          <button class="btn btn-primary"
+          *ngIf="user._id != identity._id && following"
+          (click)="unfollowUser(user._id)"
+          (mouseenter)="mouseEnter(user._id)"
+          (mouseleave)="mouseLeave()"
+          [class.btn-danger]="user._id == followUserOver">
+          <span *ngIf="user._id == followUserOver ; else following">
+            Dejar de seguir <i class="fa fa-user-slash"></i>
+          </span>
+          <ng-template #following>
+            Siguiendo <i class="fa fa-user-check"></i>
+          </ng-template>
+        </button>
+      </div>
 
-        <div class="stats pull-left" *ngIf="stats">
-            <div class="following-data">
-                <a [routerLink]="['/siguiendo', user._id, 1]">
-                    <span class="label-stats">
-                        Siguiendo
-                    </span>
-                    <span class="number-stats">
-                        {{stats.following}}
-                    </span>
-                </a>
-            </div>
-
-            <div class="following-data">
-                <a  [routerLink]="['/seguidores', user._id, 1]">
-                    <span class="label-stats">
-                        Seguidores
-                    </span>
-                    <span class="number-stats">
-                        {{stats.followed}}
-                    </span>
-                </a>
-            </div>
-
-            <div class="following-data">
-                <a href="#">
-                    <span class="label-stats">
-                        Publicaciones
-                    </span>
-                    <span class="number-stats">
-                        {{stats.publications}}
-                    </span>
-                </a>
-            </div>
+      <div class="stats col" *ngIf="stats">
+        <div class="following-data">
+          <a [routerLink]="['/siguiendo', user._id, 1]">
+            <span class="label-stats">
+              Siguiendo
+            </span>
+            <span class="number-stats">
+              {{stats.following}}
+            </span>
+          </a>
         </div>
 
+        <div class="following-data">
+          <a  [routerLink]="['/seguidores', user._id, 1]">
+            <span class="label-stats">
+              Seguidores
+            </span>
+            <span class="number-stats">
+              {{stats.followed}}
+            </span>
+          </a>
+        </div>
 
-
-
+        <div class="following-data">
+          <a href="#">
+            <span class="label-stats">
+              Publicaciones
+            </span>
+            <span class="number-stats">
+              {{stats.publications}}
+            </span>
+          </a>
+        </div>
+      </div>
     </div>
     <div class="col-lg-12" *ngIf="user">
-        <publications [user]="user._id"></publications>
+      <publications [user]="user._id"></publications>
     </div>
 </div>
-
-<sidebar><</sidebar>
+  </div>
+</div>
+</div>

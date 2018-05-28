@@ -3,7 +3,7 @@
 
 <div class="row">
 
-    <div class="col ml-auto" id="user-card">
+    <div class="col col-md-12" id="user-card">
       <h1 class="h1Strong">Hola, {{identity.name}}</h1>
 
 
@@ -65,7 +65,7 @@
 
 <div class="row">
 
-    <div id="new-publication" class="col">
+    <div id="new-publication" class="col col-md-12">
 
       <div class="alert alert-success" *ngIf="status == 'success'">
         Publicación enviada correctamente
@@ -75,22 +75,18 @@
       </div>
 
       <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm, $event)" class="col-lg-10">
-        <p>
-          <label>¿Que estas pensando hoy?</label>
-          <textarea name="text" #text="ngModel" [(ngModel)]="publication.text" class="form-control" required>
-          </textarea>
-          <span *ngIf="!text.valid && text.touched">
-            El texto de la publicación es obligatorio
-          </span>
-        </p>
+          <label>¿Qué estas pensando hoy?</label>
+            <textarea name="text" #text="ngModel" [(ngModel)]="publication.text" class="form-control" required>
+            </textarea>
+            <span *ngIf="!text.valid && text.touched">
+              El texto de la publicación es obligatorio
+            </span>
+          <br>
 
-        <p>
-
-          <label>Sube tu foto</label>
-          <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)"/>
-          <br/>
-          <input type="submit" value="Enviar" class="btn btn-success" [disabled]="!newPubForm.form.valid" />
-        </p>
+          <label>Sube una foto</label>
+            <input type="file" class="form-control-file border" (change)="fileChangeEvent($event)"/>
+            <br>
+            <input type="submit" value="Enviar" class="btn btn-success" [disabled]="!newPubForm.form.valid" />
       </form>
     </div>
 
