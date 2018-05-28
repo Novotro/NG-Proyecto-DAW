@@ -215,9 +215,6 @@ selectTravel(){
         response => {
             this.travel = response.travel;
             this.markers = response.travel.markers;
-
-            // console.log(this.markers);
-            // console.log(response);
         },
         error =>{
             var errorMessage = <any>error;
@@ -227,25 +224,6 @@ selectTravel(){
         }
     });
 }
-
-updateInputs(){
-    this._travelService.travelById(this.params).subscribe(
-        response => {
-            this.travel = response.travel;
-            this.markers = response.travel.markers;
-
-            // console.log(this.markers);
-            // console.log(response);
-        },
-        error =>{
-            var errorMessage = <any>error;
-            console.log(errorMessage);
-            if(errorMessage != null){
-                this.status = 'error';
-        }
-    });
-}
-
 
 
 /* Enrolls */

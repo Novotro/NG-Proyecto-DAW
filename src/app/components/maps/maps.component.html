@@ -28,8 +28,12 @@
             <div *ngIf="!travel._id">
                 <input type="submit" value="Confirmar" class="btn btn-success" />
             </div>
-            <input type="button" value="Actualizar" class="btn btn-danger"  (click)="updateTravels()"/>
-            <input type="button" value="Borrar este viaje" class="btn btn-warning" />
+            <div *ngIf="travel._id">
+                <input type="button" value="Actualizar" class="btn btn-danger"  (click)="updateTravels()"/>
+            </div>
+            <div *ngIf="travel._id">
+                <input type="button" value="Borrar este viaje" class="btn btn-warning" (click)="deleteTravel(travel._id)/>
+            </div>
         </form>
     </div>
 
