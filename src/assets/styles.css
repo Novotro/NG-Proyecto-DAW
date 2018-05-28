@@ -289,7 +289,9 @@ footer a:hover{
 
 #user-card .stats{
     border-top: 1px solid #ff1b00;
-    margin-top: 10px;
+    margin-top: 2%;
+    height: 100%;
+    width: 100%;
 }
 
 #user-card .stats a{
@@ -439,12 +441,12 @@ label, #user-card .label-stats{
 }
 
 .publication-button, .pagination{
-  float: inline-end;
+  float: right;
   margin-right: 0.5%;
 }
 
 .follow-button{
-  float: inline-end;
+  float: right;
   display: inline-block;
   margin-top: 0%;
 }
