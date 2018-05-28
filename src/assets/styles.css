@@ -394,7 +394,7 @@ label, #user-card .label-stats{
     height: 180px;
 }
 
-#data-profile .stats a{
+#data-profile .stats a, .messagesOptList li a{
     text-decoration: none;
     font-size: 26px;
     line-height: 35px;
@@ -403,7 +403,7 @@ label, #user-card .label-stats{
     transition: all 1s;
 }
 
-#data-profile .stats a:hover{
+#data-profile .stats a:hover, .messagesOptList li a:hover{
   color: #ffda00 !important;
   text-shadow:  0 0 10px #ff1b00,
                 0 0 20px #ff1b00,
@@ -503,7 +503,21 @@ agm-marker{
 	              0 0 50px #ffda00;
 }
 
+
+
 .btn{
   color: #ffda00 !important;
   font-family: 'Luckiest Guy', cursive !important;
+}
+
+/*Mensajes*/
+
+.messagesOptList{
+  list-style-type: none;
+}
+.messagesTitle{
+  font-size: 26px;
+  line-height: 35px;
+  font-family: 'Luckiest Guy', cursive !important;
+  color: #ff1b00;
 }

@@ -1,9 +1,10 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
 
-<div class="col-lg-10">
-    <h3>{{title}}</h3>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h3 class="messagesTitle">{{title}}</h3>
     <div class="alert alert-success"  *ngIf="status == 'success'">
         Mensaje enviado correctamente, <a [routerLink]="['/mensajes/enviados']"> revisalo aqui</a>
     </div>
@@ -27,7 +28,7 @@
 
         <p>
             <label>Mensaje</label>
-            <textarea name="text" #text="ngModel"  [(ngModel)]="message.text" class="form-control" required></textarea>
+            <textarea name="text" #text="ngModel" rows="10" [(ngModel)]="message.text" class="form-control" required></textarea>
             <span *ngIf="!text.valid && text.touched"> el mensaje es obligatorio </span>
 
         </p>
@@ -35,4 +36,6 @@
         <input type="submit" value="{{title}}" class="btn btn-success" />
 
     </form>
+</div>
+</div>
 </div>
