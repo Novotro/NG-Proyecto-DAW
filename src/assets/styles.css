@@ -30,13 +30,15 @@ font-family: 'Open Sans', sans-serif !important;
 }
 
 
-#navbarDropdown, #registerLeftMenu .nav-link, .navbar-expand-lg .navbar-nav .dropdown-menu .dropdown-item{
+#navbarDropdown, #registerLeftMenu .nav-link,
+.navbar-expand-lg .navbar-nav .dropdown-menu .dropdown-item{
   color: #f28a26 !important;
   font-weight: bold !important;
   transition: all 1s;
 }
 
-#navbarDropdown:hover, #registerLeftMenu .nav-link:hover, .navbar-expand-lg .navbar-nav .dropdown-menu .dropdown-item:hover{
+#navbarDropdown:hover, #registerLeftMenu .nav-link:hover,
+.navbar-expand-lg .navbar-nav .dropdown-menu .dropdown-item:hover{
   color: #ffda00 !important;
   text-shadow:  0 0 10px #ff1b00,
 	              0 0 20px #ff1b00,
@@ -80,7 +82,8 @@ font-family: 'Open Sans', sans-serif !important;
 	             0 0 30px #ff1b00;
 }
 
-.navbar-expand-lg .navbar-nav .dropdown-menu, .navbar-expand-lg .navbar-nav .dropdown-menu .dropdown-item:hover{
+.navbar-expand-lg .navbar-nav .dropdown-menu,
+.navbar-expand-lg .navbar-nav .dropdown-menu .dropdown-item:hover{
   background: #ffe200;
 }
 
@@ -168,7 +171,12 @@ footer a:hover{
 }
 
 .imagenSubida img{
-    max-width: 200px !important;
+  border-radius: 10px;
+  width: 30%;
+  border: 3px solid  #ff1b00;
+  box-shadow:  0 0 10px #ff1b00,
+                0 0 20px #ff1b00,
+                0 0 30px #ff1b00;
 }
 
 .navbar-nav.ml-auto .avatar{
@@ -212,8 +220,6 @@ footer a:hover{
 
 .item-publication .user-name{
     margin-top: 10px;
-    font-family: 'Luckiest Guy', cursive !important;
-    color: #ff1b00;
 }
 
 .item-user .user_name .nickname{
@@ -221,9 +227,11 @@ footer a:hover{
 }
 
 .item-user .user_name .name-surname a{
+    text-decoration: none;
     font-family: 'Luckiest Guy', cursive !important;
     color: #ff1b00;
     font-weight: bold;
+    transition: all 1s;
 }
 
 .item-publication .name-surname{
@@ -289,7 +297,7 @@ footer a:hover{
 
 #user-card .stats{
     border-top: 1px solid #ff1b00;
-    margin-top: 2%;
+    margin-top: 10px;
     height: 100%;
     width: 100%;
 }
@@ -396,22 +404,27 @@ label, #user-card .label-stats{
     height: 180px;
 }
 
-#data-profile .stats a, .messagesOptList li a{
+#data-profile .stats a, .messagesOptList li a, .item-publication .user-name{
     text-decoration: none;
-    font-size: 26px;
-    line-height: 35px;
     font-family: 'Luckiest Guy', cursive !important;
     color: #ff1b00;
     transition: all 1s;
 }
 
-#data-profile .stats a:hover, .messagesOptList li a:hover{
+#data-profile .stats a:hover, .messagesOptList li a:hover,
+.item-user .user_name .name-surname a:hover,
+.item-publication .user-name:hover{
   color: #ffda00 !important;
   text-shadow:  0 0 10px #ff1b00,
                 0 0 20px #ff1b00,
                 0 0 30px #ff1b00,
                 0 0 40px #ff1b00,
                 0 0 50px #ff1b00;
+}
+
+#data-profile .stats a, .messagesOptList li a{
+  font-size: 26px;
+  line-height: 35px;
 }
 
 .infoUser{
@@ -522,4 +535,10 @@ agm-marker{
   line-height: 35px;
   font-family: 'Luckiest Guy', cursive !important;
   color: #ff1b00;
+}
+
+/*Formulario login*/
+
+#ngForm{
+  margin-bottom: 50%;
 }

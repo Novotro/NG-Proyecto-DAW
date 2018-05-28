@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
 
+<div class="container-fluid">
 <div class="row">
-
     <div class="col col-md-12" id="user-card">
       <h1 class="h1Strong">Hola, {{identity.name}}</h1>
 
@@ -65,7 +65,7 @@
 
 <div class="row">
 
-    <div id="new-publication" class="col col-md-12">
+    <div id="new-publication" class="col">
 
       <div class="alert alert-success" *ngIf="status == 'success'">
         Publicación enviada correctamente
@@ -89,5 +89,5 @@
             <input type="submit" value="Enviar" class="btn btn-success" [disabled]="!newPubForm.form.valid" />
       </form>
     </div>
-
+</div>
 </div>
