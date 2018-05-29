@@ -1,5 +1,5 @@
 //Importe basico para crear un componente
-import {Component, OnInit, DoCheck} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { MouseEvent } from '@agm/core';
 //Jquery
@@ -73,6 +73,8 @@ export class MapsComponent implements OnInit{
         this.enroll = new Enrolls("",null);
     }
 
+
+
     ngOnInit(){
         console.log('Profile.component cargado correctamente');
         this.getTravels();
@@ -86,6 +88,7 @@ export class MapsComponent implements OnInit{
             if(this.params!= '' && this.params != undefined && this.params != null){
                 this.selectTravel();
             }
+
     }
 
 
@@ -215,7 +218,9 @@ selectTravel(){
         response => {
             this.travel = response.travel;
             this.markers = response.travel.markers;
-        },
+            // this._router.navigate("/viajes/"+this.params);
+
+            },
         error =>{
             var errorMessage = <any>error;
             console.log(errorMessage);
@@ -275,9 +280,6 @@ getEnrolledUsers(){
         });
 
     }
-
-
-
 }
 
 
@@ -301,15 +303,6 @@ deleteEnroll(){
 
 }
 
-//Conenido del api travels
-// name: String,
-// country: String,
-// organizer: {type: Schema.ObjectId, ref: 'User'},
-// date: String,
-// status: Boolean,
-// description: String,
-// galery: [String],
-// markers: [any]
 
 
 interface marker {
