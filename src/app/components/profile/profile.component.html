@@ -10,81 +10,104 @@
 
       <div  id="data-profile" *ngIf="user">
         <div class="row">
-        <div class="avatar col-lg-4">
-          <img src="{{url + 'get-image-user/' + user.image}}"  *ngIf="user.image"/>
-          <img src="assets/user.png" *ngIf="!user.image"/>
-        </div>
-        <div class="user-name col">
-          <div class="label label-default pull-left" *ngIf="user._id != identity._id && followed">
-            Te sigue
+          <div class="avatar col-lg-4">
+            <img src="{{url + 'get-image-user/' + user.image}}"  *ngIf="user.image"/>
+            <img src="assets/user.png" *ngIf="!user.image"/>
           </div>
-          <div class="infoUser">
-            <p class="name">{{user.name + ' ' + user.surname}}</p>
-            <p class="nick"> {{user.nick}}</p>
+          <div class="user-name col">
+            <div class="label label-default" *ngIf="user._id != identity._id && followed">
+              Te sigue
+            </div>
+            <div class="infoUser">
+              <p class="name">{{user.name + ' ' + user.surname}}</p>
+              <p class="nick"> {{user.nick}}</p>
+            </div>
+
+            <button class="btn btn-success userButtons"  *ngIf="!following && identity._id!=user._id" (click)="followUser(user._id)">
+              Seguir <i class="fas fa-user-plus"></i>
+            </button>
+
+            <!--Eliminar cuenta-->
+            <a href="#myModal{{identity._id}}" role="button" data-toggle="modal">
+              <button class="btn btn-danger userButtons"  >
+                borrar cuenta <i class="fa fa-trash"></i>
+              </button></a>
+              <!-- Modal HTML -->
+              <div id="myModal{{identity._id}}" class="modal fade">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Borrar Cuenta</h4>
+                      <button type="button" class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                      <p class="text-alert">¿Esta seguro de que quieres eliminar tu cuenta?</p>
+                      <p class="text-danger">Tu cuenta será eliminada de forma permanente.</p>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteAccount(identity._id)">Eliminar cuenta definitivamente</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn btn-primary"
+              *ngIf="user._id != identity._id && following"
+              (click)="unfollowUser(user._id)"
+              (mouseenter)="mouseEnter(user._id)"
+              (mouseleave)="mouseLeave()"
+              [class.btn-danger]="user._id == followUserOver">
+              <span *ngIf="user._id == followUserOver ; else following">
+                Dejar de seguir <i class="fa fa-user-slash"></i>
+              </span>
+              <ng-template #following>
+                Siguiendo <i class="fa fa-user-check"></i>
+              </ng-template>
+            </button>
           </div>
 
-          <button class="btn btn-success userButtons"  *ngIf="!following" (click)="followUser(user._id)">
-            Seguir <i class="fas fa-user-plus"></i>
-          </button>
+          <div class="stats col" *ngIf="stats">
+            <div class="following-data">
+              <a [routerLink]="['/siguiendo', user._id, 1]">
+                <span class="label-stats">
+                  Siguiendo
+                </span>
+                <span class="number-stats">
+                  {{stats.following}}
+                </span>
+              </a>
+            </div>
 
-          <button class="btn btn-danger userButtons"  (click)="deleteAccount(identity._id)">
-            borrar cuenta <i class="fa fa-trash"></i>
-          </button>
+            <div class="following-data">
+              <a  [routerLink]="['/seguidores', user._id, 1]">
+                <span class="label-stats">
+                  Seguidores
+                </span>
+                <span class="number-stats">
+                  {{stats.followed}}
+                </span>
+              </a>
+            </div>
 
-          <button class="btn btn-primary"
-          *ngIf="user._id != identity._id && following"
-          (click)="unfollowUser(user._id)"
-          (mouseenter)="mouseEnter(user._id)"
-          (mouseleave)="mouseLeave()"
-          [class.btn-danger]="user._id == followUserOver">
-          <span *ngIf="user._id == followUserOver ; else following">
-            Dejar de seguir <i class="fa fa-user-slash"></i>
-          </span>
-          <ng-template #following>
-            Siguiendo <i class="fa fa-user-check"></i>
-          </ng-template>
-        </button>
-      </div>
-
-      <div class="stats col" *ngIf="stats">
-        <div class="following-data">
-          <a [routerLink]="['/siguiendo', user._id, 1]">
-            <span class="label-stats">
-              Siguiendo
-            </span>
-            <span class="number-stats">
-              {{stats.following}}
-            </span>
-          </a>
+            <div class="following-data">
+              <a href="#">
+                <span class="label-stats">
+                  Publicaciones
+                </span>
+                <span class="number-stats">
+                  {{stats.publications}}
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
-
-        <div class="following-data">
-          <a  [routerLink]="['/seguidores', user._id, 1]">
-            <span class="label-stats">
-              Seguidores
-            </span>
-            <span class="number-stats">
-              {{stats.followed}}
-            </span>
-          </a>
-        </div>
-
-        <div class="following-data">
-          <a href="#">
-            <span class="label-stats">
-              Publicaciones
-            </span>
-            <span class="number-stats">
-              {{stats.publications}}
-            </span>
-          </a>
+        <div class="col-lg-12" *ngIf="user">
+          <publications [user]="user._id"></publications>
         </div>
       </div>
     </div>
-    <div class="col-lg-12" *ngIf="user">
-      <publications [user]="user._id"></publications>
-    </div>
-</div>
   </div>
-</div>
 </div>

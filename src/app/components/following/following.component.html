@@ -6,7 +6,6 @@
     <div class="col-lg-8 col-md-12 col-sm-12">
       <h1 class="h1Strong">{{title}} {{user.name}}</h1>
 
-
       <div class="people" *ngIf="following">
         <div *ngFor="let follow of following" class="item-user">
           <!---Listado-->
@@ -18,8 +17,7 @@
                 <button class="btn btn-success" *ngIf="follows.toString().indexOf(follow.followed._id) < 0 "  (click)="followUser(follow.followed._id)">
                   <span class="fas fa-user-plus"></span> Seguir
                 </button>
-
-
+                
                 <button class="btn btn-primary" *ngIf="follows.toString().indexOf(follow.followed._id) >= 0" (mouseenter)="mouseEnter(follow.followed._id)" (mouseleave)="mouseLeave(follow.followed._id)"  [class.btn-danger]="follow.followed._id == followUserOver" (click)="unfollowUser(follow.followed._id)">
 
                   <span *ngIf="follow.followed._id == followUserOver ; else following">
@@ -29,7 +27,6 @@
                   <ng-template #following >
                     <span class="fa fa-user-check"></span> Siguiendo
                   </ng-template>
-
 
                 </button>
               </div>
@@ -45,13 +42,15 @@
                   <a [routerLink]="['/perfil', follow.followed._id]">
                     {{follow.followed.name + ' ' + follow.followed.surname}}
                   </a>
+                  &nbsp;|&nbsp;
+                  <span class="nickname">{{follow.followed.nick}}</span>
                 </p>
-                <p class="nickname">{{follow.followed.nick}}</p>
               </div>
 
             </div>
           </div>
         </div>
+
         <!-- Paginacion -->
         <ul class="pagination">
           <li *ngIf="page > 1 "> <a [routerLink]="['/gente', prev_page]">
@@ -63,8 +62,6 @@
         </li>
       </ul>
     </div>
-
-
 
   </div>
   <sidebar></sidebar>

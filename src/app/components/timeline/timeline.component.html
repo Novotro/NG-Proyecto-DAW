@@ -19,9 +19,6 @@
                 </a>
               </div>
 
-
-
-
               <div>
                 <a [routerLink]="['/perfil', publication.user._id]" class="user-name">
                   {{publication.user.name + ' ' + publication.user.surname}}
@@ -33,7 +30,7 @@
 
                 <!-- Borrar comentario -->
                 <div class="publication-button" *ngIf="publication.user._id == identity._id">
-                  <!-- Button HTML (to Trigger Modal) -->
+                  <!-- Button HTML  -->
 
                   <a href="#myModal{{publication._id}}" role="button" class="btn btn-large btn-danger" data-toggle="modal"
                   *ngIf="publication.user._id == identity._id"><span class="fa fa-trash"></span></a>
@@ -43,19 +40,19 @@
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                           <h4 class="modal-title">Borrar Publicación</h4>
+                          <button type="button" class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
 
                         <div class="modal-body">
-                          <p>Esta seguro de que quiere borrar la publicacion?</p>
-                          <p class="text-warning"><small>La publicación sera borrada en su totalidad.</small></p>
-                          <p>{{publication.text}}</p>
+                          <p class="text-alert">¿Esta seguro de que quiere borrar la publicacion?</p>
+                          <p class="text-danger">La publicación sera borrada en su totalidad.</p>
+                          <p class="publicationText">{{publication.text}}</p>
                         </div>
 
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deletePublication(publication._id)">Borrar la publicacion</button>
+                          <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deletePublication(publication._id)">Borrar la publicacion</button>
                         </div>
                       </div>
                     </div>
@@ -101,9 +98,7 @@
         </p>
       </div>
 
-
     </div>
-
 
     <sidebar (sended)="refresh($event)"></sidebar>
 

@@ -6,7 +6,7 @@ html, body {
 
 }
 body{
-font-family: 'Open Sans', sans-serif !important;
+  font-family: 'Open Sans', sans-serif !important;
   background: linear-gradient(yellow,orange);
   background-repeat: no-repeat;
 }
@@ -114,15 +114,28 @@ font-family: 'Open Sans', sans-serif !important;
 
 
 /*FOOTER*/
+i.social{
+  font-size: x-large;
+}
+.footer-pad, .footer-pad ul li a, .footer-bottom{
+  font-family: 'Luckiest Guy', cursive !important;
+  color: #ffda00 !important;
+  text-shadow:  0 0 10px #ff1b00,
+	              0 0 20px #ff1b00,
+	              0 0 30px #ff1b00,
+	              0 0 40px #ff1b00,
+	              0 0 50px #ff1b00;
+  transition: all 1s;
+}
 
-footer{
-  color: white;
-}
-footer a{
-  color: #bfffff;
-}
-footer a:hover{
-  color: white;
+.footer-pad ul li a:hover{
+  text-decoration: none;
+  color: #ff1b00 !important;
+  text-shadow:  0 0 10px #fff,
+	              0 0 20px #ffda00,
+	              0 0 30px #ffda00,
+	              0 0 40px #ffda00,
+	              0 0 50px #ffda00;
 }
 
 .footer-bottom{
@@ -237,6 +250,7 @@ footer a:hover{
 .item-publication .name-surname{
   margin-bottom: 0%;
 }
+
 /* Sidebar */
 
 #user-card{
@@ -265,11 +279,6 @@ footer a:hover{
     font-size : 17px;
 }
 
-
-#user-card .name-surname a{
-    font-family: 'Luckiest Guy', cursive !important;
-    color: #ff1b00;
-}
 #user-card .name-surname .nickname{
     color:  #969393;
 }
@@ -404,16 +413,21 @@ label, #user-card .label-stats{
     height: 180px;
 }
 
-#data-profile .stats a, .messagesOptList li a, .item-publication .user-name{
+#data-profile .stats a, .messagesOptList li a,
+.item-publication .user-name, #user-card .name-surname a,
+.modal-header, .text-alert, .closeButton{
     text-decoration: none;
     font-family: 'Luckiest Guy', cursive !important;
-    color: #ff1b00;
+    color: #ff1b00 !important;
     transition: all 1s;
 }
 
+
+
 #data-profile .stats a:hover, .messagesOptList li a:hover,
 .item-user .user_name .name-surname a:hover,
-.item-publication .user-name:hover{
+.item-publication .user-name:hover,
+#user-card .name-surname a:hover, .closeButton:hover{
   color: #ffda00 !important;
   text-shadow:  0 0 10px #ff1b00,
                 0 0 20px #ff1b00,
@@ -483,16 +497,31 @@ agm-marker{
 .viajes{
     height: 500px;
 }
+
 /*modal box*/
+
+.publicationTex{
+  color: #000 !important;
+  font-family: 'Open Sans',sans-serif !important;
+}
 
 .modal.show, .modal-dialog,.modal-content{
   border-radius: 10px;
   border: 1px solid #ff1b00;
 }
 .modal-content{
-  color: #ff1b00;
-  background-color: yellow !important;
-  text-align: left
+  background: linear-gradient(yellow,orange);
+  text-align: left;
+}
+
+.closeButton{
+  margin-left: 0% !important;
+  font-size: 2.5rem !important;
+  margin-right: 2%;
+}
+
+.modal-title{
+  margin-right: auto;
 }
 
 /*Paginación*/
@@ -540,5 +569,8 @@ agm-marker{
 /*Formulario login*/
 
 #ngForm{
-  margin-bottom: 50%;
+  margin-bottom: 28%;
+}
+router-outlet{
+  height: 100%;
 }

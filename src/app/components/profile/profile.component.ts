@@ -40,6 +40,7 @@ export class ProfileComponent implements OnInit{
 
     ngOnInit(){
         console.log('Profile.component cargado correctamente');
+        //this.identity=this._userService.getIdentity();
         this.loadPage();
     }
 

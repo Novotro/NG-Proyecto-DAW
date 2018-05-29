@@ -19,27 +19,21 @@
                   <img src ="assets/user.png" *ngIf="!message.emitter.image" />
                 </a>
               </div>
-              <div class="user_name pull-left">
+              <div class="user_name">
                 <p class="name-surname">
                   <a [routerLink]="['/perfil', message.emitter._id]">
-                    {{message.emitter.name + '' + message.emitter.surname}}
+                    {{message.emitter.name + ' ' + message.emitter.surname}}
                   </a>
                   &nbsp;|&nbsp;
-
                   <span class="nickname">{{message.emitter.nick}}</span>
                   &nbsp;|&nbsp;
-
                   <span class="date nickname">
                     {{(message.created_at | amFromUnix) | amLocale: 'es' | amTimeAgo}} <!-- convierte el time stamp primero a date, despues le defino el idioma y despues lo pasa por el timeago-->
                   </span>
 
                 </p>
-                <p >
-                  {{message.text}}
-                </p>
-
+                <p >{{message.text}}</p>
               </div>
-
 
             </div>
           </div>
@@ -58,7 +52,6 @@
           </li>
         </ul>
       </div>
-
     </div>
   </div>
 </div>
