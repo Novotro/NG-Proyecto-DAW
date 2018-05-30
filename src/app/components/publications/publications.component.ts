@@ -79,6 +79,23 @@ export class PublicationsComponent implements OnInit{
         );
     }
 
+
+    deletePublication(id){
+        this._publicationService.deletePublication(this.token, id).subscribe(
+            response =>{
+                console.log("Mensaje borrado!");
+            },
+            error => {
+                var errorMessage = <any>error;
+                console.log(errorMessage);
+                if(errorMessage != null){
+                    this.status = 'error';
+                }
+            }
+        );
+
+    }
+
     public noMore = false;
     viewMore(){
         this.page +=1;

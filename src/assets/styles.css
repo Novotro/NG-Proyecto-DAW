@@ -542,3 +542,10 @@ agm-marker{
 #ngForm{
   margin-bottom: 50%;
 }
+
+
+/*Galeria de maps*/
+
+.galeryMini img{
+    max-width: 100px;
+}
