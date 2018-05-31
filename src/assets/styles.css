@@ -116,6 +116,7 @@ body{
 
 /*FOOTER*/
 footer{
+  margin-top: 5%;
   margin-bottom: 0% !important;
   width: 100%;
   bottom: 0;
@@ -490,9 +491,11 @@ label, #user-card .label-stats{
 /* MAPS Google*/
 
 #journeyMap{
+  margin-top: 5%;
+  border: 1px solid #ff1b00;
   box-shadow:  0 0 10px #ff1b00,
-	              0 0 20px #ff1b00,
-	              0 0 30px #ff1b00;
+	             0 0 20px #ff1b00,
+	             0 0 30px #ff1b00;
 }
 
 agm-map{
@@ -513,6 +516,11 @@ agm-marker{
     height: 500px;
 }
 
+.viajes form button{
+  float: left;
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
 /*modal box*/
 
 .publicationTex{
@@ -584,12 +592,8 @@ agm-marker{
 /*Formulario login*/
 
 #ngForm{
-  margin-bottom: 2%;
+  margin-bottom: 30%;
 }
-router-outlet{
-  height: 100%;
-}
-
 
 /*Galeria de maps*/
 

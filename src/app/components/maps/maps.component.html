@@ -9,137 +9,149 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col viajes form-group">
-        <h1 class="h1Strong">Viajes</h1>
-        <form #mapsForm="ngForm" (ngSubmit)="onSubmit(mapsForm)" class="col-lg-12" [ngFormOptions]="{ updateOn: 'change' }" >
-            <p>
-                <label>Nombre de tu viaje</label>
-                <input type="text" class="form-control" name="nombre" #name="ngModel" ng-model="travel.name" [(ngModel)]="travel.name" id="nameMap"  />
-            </p>
-            <p>
-                <!-- Sin terminar -->
-                <label>Fecha</label>
-                <input type="date" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="travel.date"  id="dateMap" value="{{travel.date}}"/>
-            </p>
+      <h1 class="h1Strong">Viajes</h1>
+      <form #mapsForm="ngForm" (ngSubmit)="onSubmit(mapsForm)" class="col-lg-12" [ngFormOptions]="{ updateOn: 'change' }" >
+        <p>
+          <label>Nombre de tu viaje</label>
+          <input type="text" class="form-control" name="nombre" #name="ngModel" ng-model="travel.name" [(ngModel)]="travel.name" id="nameMap"  />
+        </p>
+        <p>
+          <!-- Sin terminar -->
+          <label>Fecha</label>
+          <input type="date" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="travel.date"  id="dateMap" value="{{travel.date}}"/>
+        </p>
 
-            <p>
-                <label>Descripcion</label>
-                <textarea name="descripcion" #description="ngModel" class="form-control" [(ngModel)]="travel.description"  id="desMap" value="{{travel.description}}" required></textarea>
-            </p>
-            <div *ngIf="travel.status">
-                <p>
-                    <label>Estado</label>
-                    <input id="checkBox" type="checkbox" name="estado" #status="ngModel" class="form-control" [(ngModel)]="travel.status" id="statusMap" />
-                </p>
-            </div>
-            <div *ngIf="!travel._id">
-                <input type="submit" value="Confirmar" class="btn btn-success" />
-            </div>
-            <div *ngIf="travel._id">
-                <input type="button" value="Actualizar" class="btn btn-danger"  (click)="updateTravels()"/>
-            </div>
-            <div *ngIf="travel._id">
-                <input type="button" value="Borrar Viaje" class="btn btn-danger"  (click)="deleteTravel()"/>
-            </div>
-            <div *ngIf="travel._id">
-                <input type="button" value="Crear nuevo viaje" class="btn btn-danger"  [routerLink]="['/viajes']"/>
-            </div>
+        <p>
+          <label>Descripcion</label>
+          <textarea name="descripcion" #description="ngModel" class="form-control" [(ngModel)]="travel.description"  id="desMap" value="{{travel.description}}" required></textarea>
+        </p>
+        <div *ngIf="travel.status">
+          <p>
+            <label>Estado</label>
+            <input id="checkBox" type="checkbox" name="estado" #status="ngModel" class="form-control" [(ngModel)]="travel.status" id="statusMap" />
+          </p>
+        </div>
+        <div *ngIf="!travel._id">
+          <button type="submit" value="Confirmar" class="btn btn-success">Confirmar <i class="fas fa-calendar-check"></i></button>
+        </div>
+        <div *ngIf="travel._id">
+          <button value="Crear nuevo viaje" class="btn btn-success"  [routerLink]="['/viajes']">Crear nuevo viaje <i class="fas fa-calendar-plus"></i></button>
+        </div>
+        <div *ngIf="travel._id">
+          <button value="Actualizar" class="btn btn-primary"  (click)="updateTravels()">Actualizar <i class="fas fa-sync-alt"></i></button>
+        </div>
+        <div *ngIf="travel._id">
+          <button  value="Borrar Viaje" class="btn btn-danger"  (click)="deleteTravel()">Borrar Viaje <i class="fas fa-calendar-times"></i></button>
+        </div>
 
-        </form>
+
+      </form>
     </div>
 
     <div class="col-lg-6">
-        <input type="button" value="Borrar Marcas" class="btn btn-danger"  (click)="clearMap()"/>
 
-        <div id="journeyMap">
+
+      <div id="journeyMap">
         <agm-map [zoom]="zoom"  [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)">
-            <agm-marker *ngFor="let m of markers; let i = index"
-            [label]="m.label"
-            [latitude]="m.lat"
-            [longitude]="m.lng"
-            [markerDraggable]="m.draggable" >
-            <!-- Texto de la chincheta -->
-            <agm-info-window *ngIf="m.texto">
-                <strong>{{m.texto}}</strong>
-                <br/>
-                <input type="button" value="Borrar marcador" class="btn btn-danger"  (click)="deleteMarker(i)"/>
-            </agm-info-window>
+          <agm-marker *ngFor="let m of markers; let i = index"
+          [label]="m.label"
+          [latitude]="m.lat"
+          [longitude]="m.lng"
+          [markerDraggable]="m.draggable" >
+          <!-- Texto de la chincheta -->
+          <agm-info-window *ngIf="m.texto">
+            <strong>{{m.texto}}</strong>
+            <br/>
+            <input type="button" value="Borrar marcador" class="btn btn-danger"  (click)="deleteMarker(i)"/>
+          </agm-info-window>
         </agm-marker>
-    </agm-map>
+      </agm-map>
 
-    <div class="marcas"  *ngIf="markers == null">
+      <div class="marcas"  *ngIf="markers == null">
         <ul *ngFor="let m of markers; let i = index" >
-            <li>{{m.label}} -- {{m.texto}}</li>
+          <li>{{m.label}} -- {{m.texto}}</li>
         </ul>
+      </div>
     </div>
-    </div>
-    </div>
-    <!-- Listado de todos los puntos del viaje -->
-    <div class="col">
+    <br>
+    <button type="button" value="Borrar Marcas" class="btn btn-danger"  (click)="clearMap()">Borrar marcas <i class="fa fa-trash"></i></button>
+  </div>
+  <!-- Listado de todos los puntos del viaje -->
+  <div class="col">
     <div class="markersViajes">
-        <br/>
-        <h3 class="journeyList">Listado de puntos del viaje </h3>
-        <ul class="list-group" *ngFor="let t of travel.markers; let i = index" >
-            <li class="list-group-item">{{t.label}} -- {{t.texto}}</li>
-        </ul>
+      <br/>
+      <h3 class="journeyList">Listado de puntos del viaje </h3>
+      <ul class="list-group" *ngFor="let t of travel.markers; let i = index" >
+        <li class="list-group-item">{{t.label}} -- {{t.texto}}</li>
+      </ul>
     </div>
     <br/>
     <!-- Muestra todos los viajes -->
     <div  class="allTravels" *ngIf="travels != null">
-        <h3 class="journeyList"> Todos los viajes disponibles</h3>
-        <div *ngFor="let t of travels.travels" >
-            <a class="btn btn-primary" data-toggle="collapse" href="#{{t._id}}" role="button">Nombre: {{t.name}}</a>  <input type="button" value="Seleccionar viaje"  [routerLink]="['/viajes', t._id]" (click)="ngOnInit()" />
-            <div *ngIf="t.status != false">
-                <div class="collapse" id="{{t._id}}">
-                    <div div class="card card-body">
-                        <label>Descripcion: {{t.description}}</label>
-                        <div *ngIf="travel._id != '' && travel._id == t._id">
-                            <label> <input type="button" value="Apuntarse a este viaje" (click)="saveEnroll()"/></label>
-                        </div>
-                        <div class="enrolledUsers">
-                            <span>Mostrar usuarios apuntados a este viaje:</span><input type="button" value="Actualizar" class="btn btn-danger"  (click)="getEnrolledUsers(t._id)"/>
-                            <div *ngIf="enrolleds != '' ">
-                                <ul *ngFor="let en of enrolleds">
-                                    <li> <a [routerLink]="['/perfil', en.user._id]">{{en.user.name}} -- {{en.user.nick}}</a> </li>
-                                    <!-- <li *ngIf="en.enrolled == this.indentity._id"> Holalalalal</li> -->
-                                </ul>
-                            </div>
-                            <div *ngIf="t.organizer == identity._id"><!--Solo se muestra si eres el organizador del viaje-->
-                            <label>Sube una foto</label>
-                                <input  type="file" class="form-control-file border" (change)="fileChangeEvent($event)"/>
-                                <input  type="submit" value="Subir fotos" class="btn btn-success" (click)="uploadImage(t._id)"/>
-                            </div>
-
-                                <!-- Galeria de cada viaje  -->
-
-                                <div id="{{'carouselExampleControls'+t._id}}" class="carousel slide" data-ride="carousel">
-                                  <div class="carousel-inner" role="listbox">
-                                    <div class="carousel-item active">
-                                      <img class="d-block img-fluid" src="{{url + 'get-image-travel/' + t.galery[0]}}">
-                                    </div>
-                                    <div class="carousel-item" *ngFor="let g of t.galery | slice:1">
-                                      <img class="d-block img-fluid" src="{{url + 'get-image-travel/' + g}}" >
-                                    </div>
-                                  </div>
-                                  <a class="carousel-control-prev" href="#{{'carouselExampleControls'+t._id}}" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                  </a>
-                                  <a class="carousel-control-next" href="#{{'carouselExampleControls'+t._id}}" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                  </a>
-                                </div>
-
-                        </div>
-
-                    </div>
-
+      <h3 class="journeyList"> Todos los viajes disponibles</h3>
+      <div *ngFor="let t of travels.travels" >
+        <a class="btn btn-primary" data-toggle="collapse" href="#{{t._id}}" role="button">Nombre: {{t.name}}</a>  <input type="button" value="Seleccionar viaje"  [routerLink]="['/viajes', t._id]" (click)="ngOnInit()" />
+        <div *ngIf="t.status != false">
+          <div class="collapse" id="{{t._id}}">
+            <div div class="card card-body">
+              <label>Descripción: {{t.description}}</label>
+              <div *ngIf="travel._id != '' && travel._id == t._id">
+                <label> <input type="button" value="Apuntarse a este viaje" (click)="saveEnroll()"/></label>
+              </div>
+              <div class="enrolledUsers">
+                <span>Mostrar usuarios apuntados a este viaje:</span><input type="button" value="Actualizar" class="btn btn-danger"  (click)="getEnrolledUsers(t._id)"/>
+                <div *ngIf="enrolleds != '' ">
+                  <ul *ngFor="let en of enrolleds">
+                    <li> <a [routerLink]="['/perfil', en.user._id]">{{en.user.name}} -- {{en.user.nick}}</a> </li>
+                    <!-- <li *ngIf="en.enrolled == this.indentity._id"> Holalalalal</li> -->
+                  </ul>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+                <div *ngIf="t.organizer == identity._id"><!--Solo se muestra si eres el organizador del viaje-->
+                  <label>Sube una foto</label>
+                  <input  type="file" class="form-control-file border" (change)="fileChangeEvent($event)"/>
+                  <input  type="submit" value="Subir fotos" class="btn btn-success" (click)="uploadImage(t._id)"/>
+                </div>
 
+                <!-- Galeria de cada viaje  -->
+
+                <div id="{{'carouselExampleControls'+t._id}}" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                      <img class="d-block img-fluid" src="{{url + 'get-image-travel/' + t.galery[0]}}">
+                    </div>
+                    <div class="carousel-item" *ngFor="let g of t.galery | slice:1">
+                      <img class="d-block img-fluid" src="{{url + 'get-image-travel/' + g}}" >
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#{{'carouselExampleControls'+t._id}}" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#{{'carouselExampleControls'+t._id}}" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-lg-12">
+
+    <!--aquí debería ir el desplegable para ver los viajes de cada usuario o de todos ellos-->
+
+    <!--aquí las publicaciones del usuario o de todos los usuarios-->
+
+  </div>
 </div>
 
 </div>
