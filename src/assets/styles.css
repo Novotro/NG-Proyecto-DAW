@@ -582,3 +582,10 @@ agm-marker{
 router-outlet{
   height: 100%;
 }
+
+
+/*Galeria de maps*/
+
+.galeryMini img{
+    max-width: 100px;
+}

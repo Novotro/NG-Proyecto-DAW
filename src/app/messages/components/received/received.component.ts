@@ -86,4 +86,16 @@ export class ReceivedComponent implements OnInit{
 
         });
     }
+
+
+    deleteMessage(id){
+        this._messageService.deleteMessage(id).subscribe(
+            response =>{
+                console.log("mensaje borrado");
+            },
+            error =>{
+                console.log(<any>error);
+            }
+        );
+    }
 }

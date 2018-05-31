@@ -34,7 +34,7 @@ export class MapsComponent implements OnInit{
     public following;
     public markers: marker[];
     public markersViajes : marker[];
-    public params;
+    public params;    
     //Viaje
     public travel : Travels;
     public travels : Travels[];
@@ -49,6 +49,7 @@ export class MapsComponent implements OnInit{
     //Enroll
     public enroll;
     public enrolleds;
+    public enrolledsArray: Enrolls [];
 
 
     constructor(
@@ -71,6 +72,7 @@ export class MapsComponent implements OnInit{
         this.travel  = new Travels("","","","","",true,"",null,null);
         this.params = "";
         this.enroll = new Enrolls("",null);
+        this.enrolleds = "";
     }
 
 
@@ -88,13 +90,12 @@ export class MapsComponent implements OnInit{
             if(this.params!= '' && this.params != undefined && this.params != null){
                 this.selectTravel();
             }
-
     }
 
 
     onSubmit(form){
         this.createTravel(form);
-        form.reload();
+        form.reset();
     }
 
 
@@ -209,6 +210,8 @@ this._travelService.updateTravel(this.travel,this.travel._id).subscribe(
         }
     }
 );
+
+
 }
 
 //Metodo para cambiar el viaje por otro clicado
@@ -219,7 +222,7 @@ selectTravel(){
             this.travel = response.travel;
             this.markers = response.travel.markers;
             // this._router.navigate("/viajes/"+this.params);
-
+            console.log(this.travel);
             },
         error =>{
             var errorMessage = <any>error;
@@ -228,6 +231,29 @@ selectTravel(){
                 this.status = 'error';
         }
     });
+}
+
+
+
+uploadImage(id){
+    // this._travelService.uploadImage(this.filesToUpload, id).subscribe(
+    //     response => {
+    //         this.filesToUpload = [];
+    //         this.ngOnInit();
+    //         },
+    //     error =>{
+    //         var errorMessage = <any>error;
+    //         console.log(errorMessage);
+    //         if(errorMessage != null){
+    //             this.status = 'error';
+    //     }
+    // });
+
+    this._travelService.uploadImage(this.url+'upload-image-travel/'+id, [], this.filesToUpload, this.token, 'image')
+                       .then((result:any)=>{
+                           this.filesToUpload = [];
+                           this.ngOnInit();
+                       });
 }
 
 
@@ -261,15 +287,14 @@ saveEnroll(){
 }
 
 //Listado de usuarios apuntados a un viaje
-getEnrolledUsers(){
-    if(!this.enroll._id){
-        alert("No has seleccionado un viaje");
-    }else{
-        this._enrollService.getEnrolledUsers(this.token,this.enroll._id).subscribe(
+getEnrolledUsers(id){
+
+    console.log("id del enroll: " + id);
+        this._enrollService.getEnrolledUsers(this.token,id).subscribe(
             response => {
                 console.log(response);
                 this.enrolleds = response.enrolls;
-
+                console.log("enrolleds: " + this.enrolleds);
             },
             error =>{
                 var errorMessage = <any>error;
@@ -279,7 +304,7 @@ getEnrolledUsers(){
             }
         });
 
-    }
+
 }
 
 

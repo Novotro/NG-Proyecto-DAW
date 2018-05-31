@@ -28,7 +28,7 @@ export class TravelService{
         //Metodo para conseguir los viajes de un usuario
         travelById(id) : Observable<any>{
             let headers = new HttpHeaders().set('Content-Type', 'application/json'); //Defino las cabeceras HTTP
-                    
+
             return this._http.get(this.url+'travelById/'+id, {headers: headers});
         }
 
@@ -47,6 +47,32 @@ export class TravelService{
             let headers = new HttpHeaders().set('Content-Type', 'application/json'); //Defino las cabeceras HTTP
 
             return this._http.get(this.url+'travelsList/false', {headers: headers});
+        }
+
+        //Metodo para subir imagenes
+        uploadImage(url: string, params: Array<string>, files : Array<File>, token : string, name : string){
+            return new Promise(function(resolve, reject){
+                var formData : any =new FormData();
+                var xhr = new XMLHttpRequest(); //Objeto que nos permite hacer peticiones ajax en js puro
+
+                for(var i = 0; i< files.length; i++){
+                    formData.append(name, files[i], files[i].name);
+                }
+                xhr.onreadystatechange= function(){
+                    if(xhr.readyState == 4){
+                        if(xhr.status == 200){
+                            resolve(JSON.parse(xhr.response));
+                        }else{
+                            reject(xhr.response);
+                        }
+                    }
+                }
+
+                xhr.open('POST', url, true);
+                xhr.setRequestHeader('Authorization', token);
+                xhr.send(formData);
+
+            });
         }
 
 }

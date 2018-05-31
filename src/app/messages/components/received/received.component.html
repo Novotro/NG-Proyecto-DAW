@@ -32,7 +32,10 @@
                   </span>
 
                 </p>
-                <p >{{message.text}}</p>
+                <p >
+                  {{message.text}}
+                </p>
+                <input type="button" value="borrar" (click)="deleteMessage(message._id)" [routerLink]="['/mensajes']"/>
               </div>
 
             </div>

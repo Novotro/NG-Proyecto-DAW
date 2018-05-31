@@ -31,5 +31,11 @@ export class MessageService{
             return this._http.get(this.url+'messages/'+page, {headers: headers});
         }
 
+        deleteMessage(id): Observable<any>{
+            let headers = new HttpHeaders().set('Content-Type','application/json');
+
+            return this._http.delete(this.url+'delete-message/'+id, {headers: headers});
+        }
+
 
 }
