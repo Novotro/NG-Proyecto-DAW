@@ -39,6 +39,9 @@
             <div *ngIf="travel._id">
                 <input type="button" value="Borrar Viaje" class="btn btn-danger"  (click)="deleteTravel()"/>
             </div>
+            <div *ngIf="travel._id">
+                <input type="button" value="Crear nuevo viaje" class="btn btn-danger"  [routerLink]="['/viajes']"/>
+            </div>
 
         </form>
     </div>

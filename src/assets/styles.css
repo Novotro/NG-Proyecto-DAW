@@ -6,6 +6,8 @@ html, body {
 
 }
 body{
+  margin: 0%;
+  padding: 0%;
   font-family: 'Open Sans', sans-serif !important;
   background: linear-gradient(yellow,orange);
   background-repeat: no-repeat;
@@ -114,6 +116,12 @@ body{
 
 
 /*FOOTER*/
+footer{
+  margin-bottom: 0% !important;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
 i.social{
   font-size: x-large;
 }
@@ -569,7 +577,7 @@ agm-marker{
 /*Formulario login*/
 
 #ngForm{
-  margin-bottom: 28%;
+  margin-bottom: 2%;
 }
 router-outlet{
   height: 100%;
