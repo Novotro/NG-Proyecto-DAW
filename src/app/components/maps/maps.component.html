@@ -131,8 +131,9 @@
                 <div class="collapse" id="{{t._id}}">
                     <div div class="card card-body">
                         <label>Descripcion: {{t.description}}</label>
-                        <label> <input type="button" value="Apuntarse viaje" (click)="saveEnroll()"/></label>
-
+                        <div *ngIf="travel._id != '' && travel._id == t._id">
+                            <label> <input type="button" value="Apuntarse a este viaje" (click)="saveEnroll()"/></label>
+                        </div>
                         <div class="enrolledUsers">
                             <span>Mostrar usuarios apuntados a este viaje:</span><input type="button" value="Actualizar" class="btn btn-danger"  (click)="getEnrolledUsers(t._id)"/>
                             <div *ngIf="enrolleds != '' ">
