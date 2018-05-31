@@ -34,7 +34,7 @@ export class MapsComponent implements OnInit{
     public following;
     public markers: marker[];
     public markersViajes : marker[];
-    public params;    
+    public params;
     //Viaje
     public travel : Travels;
     public travels : Travels[];
@@ -223,6 +223,7 @@ selectTravel(){
             this.markers = response.travel.markers;
             // this._router.navigate("/viajes/"+this.params);
             console.log(this.travel);
+            // localStorage.clear();
             },
         error =>{
             var errorMessage = <any>error;
