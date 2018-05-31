@@ -20,6 +20,31 @@
                 </a>
               </div>
               <div class="user_name">
+                <!--Eliminar mensaje-->
+                <a href="#myModal" class="modalMessage" role="button" data-toggle="modal">
+                  <button class="btn btn-danger userButtons"  ><i class="fa fa-trash"></i></button>
+                </a>
+                <!-- Modal HTML -->
+                <div id="myModal" class="modal fade">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Eliminar mensaje</h4>
+                        <button type="button" class="close closeButton" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      </div>
+
+                      <div class="modal-body">
+                        <p class="text-alert">¿Esta seguro de que quieres eliminar este mensaje?</p>
+                        <p class="text-danger">El mensaje será eliminado de forma permanente.</p>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteMessage(message._id)" [routerLink]="['/mensajes']">Eliminar mensaje definitivamente</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <p class="name-surname">
                   <a [routerLink]="['/perfil', message.emitter._id]">
                     {{message.emitter.name + ' ' + message.emitter.surname}}
@@ -35,9 +60,7 @@
                 <p >
                   {{message.text}}
                 </p>
-                <input type="button" value="borrar" (click)="deleteMessage(message._id)" [routerLink]="['/mensajes']"/>
-              </div>
-
+              </div>            
             </div>
           </div>
         </div>

@@ -589,6 +589,9 @@ agm-marker{
   color: #ff1b00;
 }
 
+.modalMessage button{
+  float: right;
+}
 /*Formulario login*/
 
 #ngForm{
