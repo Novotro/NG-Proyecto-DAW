@@ -6,11 +6,10 @@ html, body {
 
 }
 body{
-  margin: 0%;
-  padding: 0%;
   font-family: 'Open Sans', sans-serif !important;
   background: linear-gradient(yellow,orange);
   background-repeat: no-repeat;
+  position: relative;
 }
 
 .h1Strong,.logoNav{
@@ -121,6 +120,8 @@ footer{
   width: 100%;
   bottom: 0;
   left: 0;
+  right: 0;
+  /*position: absolute;*/
 }
 i.social{
   font-size: x-large;
