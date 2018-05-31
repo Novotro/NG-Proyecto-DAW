@@ -424,7 +424,7 @@ label, #user-card .label-stats{
 
 #data-profile .stats a, .messagesOptList li a,
 .item-publication .user-name, #user-card .name-surname a,
-.modal-header, .text-alert, .closeButton{
+.modal-header, .text-alert, .closeButton, .journeyList{
     text-decoration: none;
     font-family: 'Luckiest Guy', cursive !important;
     color: #ff1b00 !important;
@@ -489,8 +489,14 @@ label, #user-card .label-stats{
 
 /* MAPS Google*/
 
+#journeyMap{
+  box-shadow:  0 0 10px #ff1b00,
+	              0 0 20px #ff1b00,
+	              0 0 30px #ff1b00;
+}
+
 agm-map{
-    height: 300px;
+    height: 450px;
 }
 
 area{
