@@ -9,26 +9,57 @@
       </h1>
 
       <div  id="data-profile" >
-        <div class="row">
-          <div class="avatar col-lg-4">
-            <img src="{{url + 'get-image-user/' + user.image}}"  *ngIf="user.image"/>
-            <img src="assets/user.png" *ngIf="!user.image"/>
+        <div class="row profileCont">
+          <div class="col-lg-2 col-md-2 col-sm-0 col-sx-0">
           </div>
-          <div class="user-name col">
+          <div class="user-name col-lg-3 col-md-3 col-sm-3 col-sx-3">
             <div class="label label-default" *ngIf="user._id != identity._id && followed">
-              Te sigue
+              <h4>Te sigue</h4>
             </div>
             <div class="infoUser">
               <p class="name">{{user.name + ' ' + user.surname}}</p>
-              <p class="nick"> {{user.nick}}</p>
+              <div class="nick"> {{user.nick}}</div>
             </div>
+            <div class="stats" *ngIf="stats">
+              <div class="following-data">
+                <a [routerLink]="['/siguiendo', user._id, 1]">
+                  <span class="label-stats">
+                    Siguiendo
+                  </span>
+                  <span class="number-stats">
+                    {{stats.following}}
+                  </span>
+                </a>
+              </div>
 
+              <div class="following-data">
+                <a  [routerLink]="['/seguidores', user._id, 1]">
+                  <span class="label-stats">
+                    Seguidores
+                  </span>
+                  <span class="number-stats">
+                    {{stats.followed}}
+                  </span>
+                </a>
+              </div>
+
+              <div class="following-data">
+                <a [routerLink]="['/perfil', identity._id]">
+                  <span class="label-stats">
+                    Publicaciones
+                  </span>
+                  <span class="number-stats">
+                    {{stats.publications}}
+                  </span>
+                </a>
+              </div>
+            </div>
             <button class="btn btn-success userButtons"  *ngIf="!following && identity._id!=user._id" (click)="followUser(user._id)">
               Seguir <i class="fas fa-user-plus"></i>
             </button>
 
             <!--Eliminar cuenta-->
-            <a href="#myModal{{identity._id}}" role="button" data-toggle="modal">
+            <a href="#myModal{{identity._id}}" class="delAccount" role="button" data-toggle="modal" *ngIf="identity._id==user._id">
               <button class="btn btn-danger userButtons"  >
                 borrar cuenta <i class="fa fa-trash"></i>
               </button></a>
@@ -68,41 +99,13 @@
               </ng-template>
             </button>
           </div>
-
-          <div class="stats col" *ngIf="stats">
-            <div class="following-data">
-              <a [routerLink]="['/siguiendo', user._id, 1]">
-                <span class="label-stats">
-                  Siguiendo
-                </span>
-                <span class="number-stats">
-                  {{stats.following}}
-                </span>
-              </a>
-            </div>
-
-            <div class="following-data">
-              <a  [routerLink]="['/seguidores', user._id, 1]">
-                <span class="label-stats">
-                  Seguidores
-                </span>
-                <span class="number-stats">
-                  {{stats.followed}}
-                </span>
-              </a>
-            </div>
-
-            <div class="following-data">
-              <a href="#">
-                <span class="label-stats">
-                  Publicaciones
-                </span>
-                <span class="number-stats">
-                  {{stats.publications}}
-                </span>
-              </a>
-            </div>
+          <div class="avatar col-lg-5 col-md-5 col-sm-5 col-sx-5">
+            <img src="{{url + 'get-image-user/' + user.image}}"  *ngIf="user.image"/>
+            <img src="assets/user.png" *ngIf="!user.image"/>
           </div>
+          <div class="col-lg-2 col-md-2 col-sm-0 col-sx-0">
+          </div>
+
         </div>
         <div class="col-lg-12" *ngIf="user">
           <publications [user]="user._id"></publications>

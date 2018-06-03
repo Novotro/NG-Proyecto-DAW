@@ -12,7 +12,7 @@ body{
   position: relative;
 }
 
-.h1Strong,.logoNav{
+.h1Strong,.logoNav, .user-name .label h4{
   font-family: 'Luckiest Guy', cursive !important;
   color: #ffda00 !important;
   text-shadow:  0 0 10px #ff1b00,
@@ -104,6 +104,7 @@ body{
 }
 
 .carousel-caption h3,.carousel-caption p{
+  font-family: 'Luckiest Guy', cursive !important;
   font-weight: bold;
   color: #ffda00 !important;
   text-shadow:  0 0 10px #ff1b00,
@@ -112,7 +113,9 @@ body{
 	              0 0 40px #ff1b00,
 	              0 0 50px #ff1b00;
 }
-
+.carousel-caption{
+  top: 7% !important;
+}
 
 /*FOOTER*/
 footer{
@@ -352,10 +355,7 @@ label, #user-card .label-stats{
 	              0 0 50px #ff1b00;
 }
 
-.border.form-control-file{
-  color: #ff1b00;
-  border:1px solid#ff1b00 !important;
-}
+
 
 /*Timeline */
 
@@ -369,6 +369,30 @@ label, #user-card .label-stats{
 
 
 /* Perfil */
+
+.delAccount{
+  margin-bottom: 0% !important;
+}
+
+.user-name{
+  text-align: right;
+}
+.profileCont{
+  margin-bottom: 2%;
+  color: #ff1b00;
+  border:1px solid#ff1b00 !important;
+  transition: all 1s;
+}
+.profileCont:hover{
+  background-color: #ffa50080;
+  box-shadow:  0 0 10px #ff1b00,
+	             0 0 20px #ff1b00,
+	             0 0 30px #ff1b00;
+  background-image: url(images/paper_plane.png);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
 
 #data-profile{
   margin-bottom: 2%;
@@ -384,7 +408,7 @@ label, #user-card .label-stats{
 
 #data-profile .avatar img{
   border-radius: 10px;
-  width: 80%;
+  width: 60%;
   border: 3px solid  #ff1b00;
   box-shadow:  0 0 10px #ff1b00,
 	              0 0 20px #ff1b00,
@@ -411,6 +435,8 @@ label, #user-card .label-stats{
 
 
 #data-profile .user-name .nick{
+    margin-top: 0% !important;
+    margin-bottom: 10% !important;
     font-size: 24px;
     font-weight: normal;
     color: grey;
@@ -418,9 +444,10 @@ label, #user-card .label-stats{
 }
 
 #data-profile .stats {
-    margin-top: 4%;
-    border-left: 4px solid #ff1b00;
-    height: 180px;
+    margin-top: 2%;
+    /*border-left: 4px solid #ff1b00;
+    height: 180px;*/
+    margin-bottom: 15%;
 }
 
 #data-profile .stats a, .messagesOptList li a,
@@ -452,7 +479,7 @@ label, #user-card .label-stats{
 }
 
 .infoUser{
-  margin-bottom: 50%;
+  margin-bottom: 1%;
 }
 
 .userButtons{

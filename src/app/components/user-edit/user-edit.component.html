@@ -55,7 +55,7 @@
           <p>
             <label>Sube tu avatar</label>
             <br>
-            <input type="file" class="form-control-file border" (change)="fileChangeEvent($event) "/>
+            <input type="file" class="form-control-file" (change)="fileChangeEvent($event) "/>
           </p>
           <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!userEditForm.form.valid"/>
         </div>

@@ -35,6 +35,7 @@
           </a>
         </div>
 
+
         <div class="following-data">
           <a [routerLink]="['/seguidores', identity._id, 1]">
             <span class="label-stats">
@@ -84,7 +85,7 @@
           <br>
 
           <label>Sube una foto</label>
-            <input type="file" class="form-control-file border" (change)="fileChangeEvent($event)"/>
+            <input type="file" class="form-control-file" (change)="fileChangeEvent($event)"/>
             <br>
             <input type="submit" value="Enviar" class="btn btn-success" [disabled]="!newPubForm.form.valid" />
       </form>
