@@ -75,4 +75,11 @@ export class TravelService{
             });
         }
 
+
+        deleteTravel(id): Observable<any>{
+            let headers = new HttpHeaders().set('Content-Type', 'application/json'); //Defino las cabeceras HTTP
+
+            return this._http.delete(this.url+'delete-travel/'+id, {headers: headers});
+        }
+
 }

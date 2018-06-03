@@ -25,6 +25,7 @@ import { EnrollService } from '../../services/enroll.service';
 export class MapsComponent implements OnInit{
     public title: string;
     public user : User;
+    public users : User[];
     public status : string;
     public identity;
     public token;
@@ -48,8 +49,10 @@ export class MapsComponent implements OnInit{
     public zoom: number = 10;
     //Enroll
     public enroll;
-    public enrolleds;
-    public enrolledsArray: Enrolls [];
+    public enrolleds = [];
+    public enrolledsArray :  enInterface[];
+    public counter;
+
 
 
     constructor(
@@ -69,10 +72,13 @@ export class MapsComponent implements OnInit{
         this.followed = false;
         this.markers = [];
         this.travels = [];
+        this.enrolledsArray = [];
         this.travel  = new Travels("","","","","",true,"",null,null);
         this.params = "";
         this.enroll = new Enrolls("",null);
-        this.enrolleds = "";
+        this.enrolleds = [];
+        this.counter = 0;
+        this.users= [];
     }
 
 
@@ -80,6 +86,7 @@ export class MapsComponent implements OnInit{
     ngOnInit(){
         console.log('Profile.component cargado correctamente');
         this.getTravels();
+        this.getUsers();
         this._route.params.subscribe(params =>{
             let travel_id = params['id'];
                 if(params['id']){
@@ -89,6 +96,7 @@ export class MapsComponent implements OnInit{
             });
             if(this.params!= '' && this.params != undefined && this.params != null){
                 this.selectTravel();
+
             }
     }
 
@@ -97,7 +105,25 @@ export class MapsComponent implements OnInit{
         this.createTravel(form);
         form.reset();
     }
+//Listado de todos los usuarios
+getUsers(){
+    this._userService.getUsers(1,false).subscribe(
+        response => {
+            // console.log(response);
+            this.users= response.users;
+            console.log(this.users);
+        },
+        error =>{
+            var errorMessage = <any>error;
+            console.log(errorMessage);
 
+            if(errorMessage != null){
+                this.status = 'error';
+            }
+        }
+    );
+
+}
 
     //Borrar todos los marcadores
 clearMap(){
@@ -143,7 +169,7 @@ if(this.markers.length <= 0){
     this.travel.organizer= this.identity._id;
     this.travel.galery = null;
     this.travel.markers = this.markers;
-    console.log(this.travel);
+    // console.log(this.travel);
 
     this._travelService.addTravel(this.travel).subscribe(
         response => {
@@ -164,6 +190,25 @@ if(this.markers.length <= 0){
 }
 
 
+//Borrar viajes
+deleteTravel(id){
+    this._travelService.deleteTravel(id).subscribe(
+        response => {
+            console.log("Viaje borrado con exito");
+            this.travels = [];
+            this._router.navigate(['/viajes']);
+        },
+        error =>{
+            var errorMessage = <any>error;
+            console.log(errorMessage);
+
+            if(errorMessage != null){
+                this.status = 'error';
+            }
+        }
+    );
+}
+
 //Por si el usuario quiere subir fotos
 public filesToUpload : Array<File>;
 fileChangeEvent(fileInput : any){
@@ -173,14 +218,16 @@ fileChangeEvent(fileInput : any){
 //Transformar las marcas de la vista en un Array
 viewMarkers(marcas){
 this.markersViajes = marcas;
-console.log(this.markersViajes);
+// console.log(this.markersViajes);
 }
 
 //Metodo para conseguir los viajes
 getTravels(){
 this._travelService.travelList().subscribe(
     response => {
-        this.travels = response;
+        this.travels = response.travels;
+
+        this.getEnrolledUsers();
     },
     error =>{
         var errorMessage = <any>error;
@@ -189,8 +236,7 @@ this._travelService.travelList().subscribe(
         if(errorMessage != null){
             this.status = 'error';
         }
-    }
-);
+    });
 }
 
 
@@ -222,8 +268,10 @@ selectTravel(){
             this.travel = response.travel;
             this.markers = response.travel.markers;
             // this._router.navigate("/viajes/"+this.params);
-            console.log(this.travel);
-            // localStorage.clear();
+            // console.log(this.travel);
+            console.log(this.enrolledsArray );
+
+            console.log("Array enrolleds "+this.enrolleds);
             },
         error =>{
             var errorMessage = <any>error;
@@ -237,19 +285,6 @@ selectTravel(){
 
 
 uploadImage(id){
-    // this._travelService.uploadImage(this.filesToUpload, id).subscribe(
-    //     response => {
-    //         this.filesToUpload = [];
-    //         this.ngOnInit();
-    //         },
-    //     error =>{
-    //         var errorMessage = <any>error;
-    //         console.log(errorMessage);
-    //         if(errorMessage != null){
-    //             this.status = 'error';
-    //     }
-    // });
-
     this._travelService.uploadImage(this.url+'upload-image-travel/'+id, [], this.filesToUpload, this.token, 'image')
                        .then((result:any)=>{
                            this.filesToUpload = [];
@@ -288,23 +323,36 @@ saveEnroll(){
 }
 
 //Listado de usuarios apuntados a un viaje
-getEnrolledUsers(id){
 
-    console.log("id del enroll: " + id);
-        this._enrollService.getEnrolledUsers(this.token,id).subscribe(
-            response => {
-                console.log(response);
-                this.enrolleds = response.enrolls;
-                console.log("enrolleds: " + this.enrolleds);
-            },
-            error =>{
-                var errorMessage = <any>error;
-                console.log(errorMessage);
-                if(errorMessage != null){
-                    this.status = 'error';
-            }
-        });
+getEnrolledUsers(){
+    // console.log("length : "+ this.travels.travels.length );
+    var max = this.travels.length;
+    console.log(max);
+    for(var i=0; i< max; i++){
+        this.pushEnroll(i);
+    }
 
+    console.log(this.enrolledsArray);
+}
+
+pushEnroll(pos){
+    var viajes = this.travels;
+    this._enrollService.getEnrolledUsers(this.token,viajes[pos]._id).subscribe(
+        response => {
+            // console.log(response);
+            this.enrolledsArray.push({
+                _id: viajes[pos]._id,
+                enrolls: response.enrolls,
+                total: response.total
+            });
+        },
+        error =>{
+            var errorMessage = <any>error;
+            console.log(errorMessage);
+            if(errorMessage != null){
+                this.status = 'error';
+        }
+    });
 
 }
 
@@ -313,7 +361,7 @@ getEnrolledUsers(id){
 deleteEnroll(){
     this._enrollService.deleteEnroll(this.token, this.enroll._id).subscribe(
         response => {
-            console.log("id Enroll!  "+ this.enroll._id);
+            // console.log("id Enroll!  "+ this.enroll._id);
 
             this.enroll = response.enroll;
         },
@@ -327,8 +375,9 @@ deleteEnroll(){
 }
 
 
-}
 
+
+}
 
 
 interface marker {
@@ -338,4 +387,10 @@ interface marker {
     texto?: string;
     draggable: boolean;
     fotos?: File[];
+}
+
+interface enInterface {
+    _id: String;
+    enrolls: Enrolls[];
+    total: String;
 }

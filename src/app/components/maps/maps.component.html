@@ -41,7 +41,7 @@
           <button value="Actualizar" class="btn btn-primary"  (click)="updateTravels()">Actualizar <i class="fas fa-sync-alt"></i></button>
         </div>
         <div *ngIf="travel._id">
-          <button  value="Borrar Viaje" class="btn btn-danger"  (click)="deleteTravel()">Borrar Viaje <i class="fas fa-calendar-times"></i></button>
+          <button  value="Borrar Viaje" class="btn btn-danger"  (click)="deleteTravel(params)">Borrar Viaje <i class="fas fa-calendar-times"></i></button>
         </div>
 
 
@@ -80,7 +80,7 @@
   <div class="col">
     <div class="markersViajes">
       <br/>
-      <h3 class="journeyList">Listado de puntos del viaje </h3>
+      <h3  *ngIf=" markers.length > 0 && travel._id" class="journeyList">Listado de puntos del viaje </h3>
       <ul class="list-group" *ngFor="let t of travel.markers; let i = index" >
         <li class="list-group-item">{{t.label}} -- {{t.texto}}</li>
       </ul>
@@ -89,23 +89,24 @@
     <!-- Muestra todos los viajes -->
     <div  class="allTravels" *ngIf="travels != null">
       <h3 class="journeyList"> Todos los viajes disponibles</h3>
-      <div *ngFor="let t of travels.travels" >
+      <div *ngFor="let t of travels" >
         <a class="btn btn-primary" data-toggle="collapse" href="#{{t._id}}" role="button">Nombre: {{t.name}}</a>  <input type="button" value="Seleccionar viaje"  [routerLink]="['/viajes', t._id]" (click)="ngOnInit()" />
         <div *ngIf="t.status != false">
           <div class="collapse" id="{{t._id}}">
             <div div class="card card-body">
               <label>Descripción: {{t.description}}</label>
-              <div *ngIf="travel._id != '' && travel._id == t._id">
+              <div>
                 <label> <input type="button" value="Apuntarse a este viaje" (click)="saveEnroll()"/></label>
               </div>
+
               <div class="enrolledUsers">
-                <span>Mostrar usuarios apuntados a este viaje:</span><input type="button" value="Actualizar" class="btn btn-danger"  (click)="getEnrolledUsers(t._id)"/>
-                <div *ngIf="enrolleds != '' ">
-                  <ul *ngFor="let en of enrolleds">
-                    <li> <a [routerLink]="['/perfil', en.user._id]">{{en.user.name}} -- {{en.user.nick}}</a> </li>
-                    <!-- <li *ngIf="en.enrolled == this.indentity._id"> Holalalalal</li> -->
-                  </ul>
+                <span>Usuarios apuntados a este viaje:</span>
+                <!-- Bucle de enrolls -->
+                <div *ngFor="let enr of enrolledsArray.enrolls; let i = index">
+                        <a *ngIf="enr.indexOf(user[i]._id)"  [routerLink]="['/perfil', user._id]">{{user[i].name + '  '+ user[i].nick}}</a>
+
                 </div>
+
                 <div *ngIf="t.organizer == identity._id"><!--Solo se muestra si eres el organizador del viaje-->
                   <label>Sube una foto</label>
                   <input  type="file" class="form-control-file border" (change)="fileChangeEvent($event)"/>
@@ -114,7 +115,7 @@
 
                 <!-- Galeria de cada viaje  -->
 
-                <div id="{{'carouselExampleControls'+t._id}}" class="carousel slide" data-ride="carousel">
+                <div id="{{'carouselExampleControls'+t._id}}" class="carousel slide" data-ride="carousel" *ngIf="t.galery != null && t.galery != '' && t.galery != undefined">
                   <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
                       <img class="d-block img-fluid" src="{{url + 'get-image-travel/' + t.galery[0]}}">
