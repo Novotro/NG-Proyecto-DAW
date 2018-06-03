@@ -116,7 +116,7 @@ getUsers(){
         response => {
             // console.log(response);
             this.users= response.users;
-            console.log(this.users);
+            // console.log(this.users);
             this.start();
         },
         error =>{
@@ -276,7 +276,6 @@ selectTravel(){
             // console.log(this.travel);
             console.log(this.enrolledsArray );
 
-            console.log("Array enrolleds "+this.enrolleds);
             },
         error =>{
             var errorMessage = <any>error;
@@ -337,7 +336,7 @@ getEnrolledUsers(){
         this.pushEnroll(i);
     }
 
-    console.log(this.enrolledsArray);
+    // console.log(this.enrolledsArray);
 }
 
 pushEnroll(pos){

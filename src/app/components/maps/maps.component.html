@@ -103,12 +103,23 @@
                 <span>Usuarios apuntados a este viaje:</span>
                 <!-- Bucle de enrolls -->
                 <div *ngFor="let enr of enrolledsArray; let i = index">
-                        <!-- <a  [routerLink]="['/perfil', enr._id]">{{enr[i].name + '  '+ enr[i].nick}}</a> -->
+                    <div *ngIf="enr.enrolls[i] && enr._id == t._id">
 
-                        <div *ngIf="t._id == enr.enrolls" >
-                            <a *ngIf="enr.enrolls">{{enr.enrolls}}</a>
+                        <div ng-repeat="enr.enrolls[i]; let i = index">
+                            <a *ngIf="enr.enrolls[i]">{{enr.enrolls[i].user.name}}</a>
                         </div>
+                    </div>
+
+
+
                 </div>
+
+                <!-- <div *ngFor="let enr of enrolledsArray; let i = index">
+                    <a *ngIf="enr.enrolls[i] && enr._id == t._id">{{enr.enrolls[i].user.name}}</a>
+
+
+
+                </div> -->
 
                 <div *ngIf="t.organizer == identity._id"><!--Solo se muestra si eres el organizador del viaje-->
                   <label>Sube una foto</label>
