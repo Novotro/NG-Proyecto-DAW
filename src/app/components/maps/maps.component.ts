@@ -87,6 +87,16 @@ export class MapsComponent implements OnInit{
         console.log('Profile.component cargado correctamente');
         this.getTravels();
         this.getUsers();
+
+    }
+
+
+    onSubmit(form){
+        this.createTravel(form);
+        form.reset();
+    }
+
+    start(){
         this._route.params.subscribe(params =>{
             let travel_id = params['id'];
                 if(params['id']){
@@ -100,11 +110,6 @@ export class MapsComponent implements OnInit{
             }
     }
 
-
-    onSubmit(form){
-        this.createTravel(form);
-        form.reset();
-    }
 //Listado de todos los usuarios
 getUsers(){
     this._userService.getUsers(1,false).subscribe(
@@ -112,6 +117,7 @@ getUsers(){
             // console.log(response);
             this.users= response.users;
             console.log(this.users);
+            this.start();
         },
         error =>{
             var errorMessage = <any>error;
@@ -195,7 +201,6 @@ deleteTravel(id){
     this._travelService.deleteTravel(id).subscribe(
         response => {
             console.log("Viaje borrado con exito");
-            this.travels = [];
             this._router.navigate(['/viajes']);
         },
         error =>{
