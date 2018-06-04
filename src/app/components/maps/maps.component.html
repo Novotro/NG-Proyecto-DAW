@@ -104,10 +104,13 @@
                 <!-- Bucle de enrolls -->
                 <div *ngFor="let enr of enrolledsArray; let i = index">
                     <div *ngIf="enr.enrolls[i] && enr._id == t._id">
+                        <div *ngFor="let enrollAr of enr.enrolls; let j = index">
+                            <!-- <a *ngIf="enr.enrolls[j]" [routerLink]="['/perfil', enr.enrolls[j]._id]"   >{{enr.enrolls[j].user.name}}</a> -->
+                            <a *ngIf="enrollAr" [routerLink]="['/perfil', enrollAr.user._id]">{{enrollAr.user.name}}</a>
 
-                        <div ng-repeat="enr.enrolls[i]; let i = index">
-                            <a *ngIf="enr.enrolls[i]">{{enr.enrolls[i].user.name}}</a>
                         </div>
+
+
                     </div>
 
 
