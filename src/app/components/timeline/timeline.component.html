@@ -74,8 +74,8 @@
                   </button>
 
                 </div>
-                <br/>
-                <div class="col-lg-12" *ngIf="publication.file != 'null' && showImage == publication._id">
+                <br>
+                <div class="imgPublication" *ngIf="publication.file != 'null' && showImage == publication._id">
                   <img src="{{url + 'get-image-pub/' + publication.file}}" class="col-lg-12"/>
                 </div>
 

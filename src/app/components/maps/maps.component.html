@@ -48,9 +48,7 @@
       </form>
     </div>
 
-    <div class="col-lg-6">
-
-
+    <div class="col-lg-8">
       <div id="journeyMap">
         <agm-map [zoom]="zoom"  [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)">
           <agm-marker *ngFor="let m of markers; let i = index"
@@ -76,100 +74,97 @@
     <br>
     <button type="button" value="Borrar Marcas" class="btn btn-danger"  (click)="clearMap()">Borrar marcas <i class="fa fa-trash"></i></button>
   </div>
+
+</div>
   <!-- Listado de todos los puntos del viaje -->
-  <div class="col">
-    <div class="markersViajes">
+<div class="row">
+  <div class="col-lg-12">
+      <div class="markersViajes">
+        <br/>
+        <h3  *ngIf=" markers.length > 0 && travel._id" class="journeyList">Listado de puntos del viaje </h3>
+        <ul class="list-group" *ngFor="let t of travel.markers; let i = index" >
+          <li class="list-group-item">{{t.label}} <i class="fa fa-paper-plane"></i> {{t.texto}}</li>
+        </ul>
+      </div>
       <br/>
-      <h3  *ngIf=" markers.length > 0 && travel._id" class="journeyList">Listado de puntos del viaje </h3>
-      <ul class="list-group" *ngFor="let t of travel.markers; let i = index" >
-        <li class="list-group-item">{{t.label}} -- {{t.texto}}</li>
-      </ul>
-    </div>
-    <br/>
-    <!-- Muestra todos los viajes -->
-    <div  class="allTravels" *ngIf="travels != null">
-      <h3 class="journeyList"> Todos los viajes disponibles</h3>
-      <div *ngFor="let t of travels" >
-        <a class="btn btn-primary" data-toggle="collapse" href="#{{t._id}}" role="button">Nombre: {{t.name}}</a>  <input type="button" value="Seleccionar viaje"  [routerLink]="['/viajes', t._id]" (click)="ngOnInit()" />
-        <div *ngIf="t.status != false">
-          <div class="collapse" id="{{t._id}}">
-            <div div class="card card-body">
-              <label>Descripción: {{t.description}}</label>
-              <div>
-                <label> <input type="button" value="Apuntarse a este viaje" (click)="saveEnroll()"/></label>
-              </div>
-
-              <div class="enrolledUsers" *ngIf="enrolledsArray">
-                <span>Usuarios apuntados a este viaje:</span>
-                <!-- Bucle de enrolls -->
-                <div *ngFor="let enr of enrolledsArray; let i = index">
-                    <div *ngIf="enr.enrolls[i] && enr._id == t._id">
-                        <div *ngFor="let enrollAr of enr.enrolls; let j = index">
-                            <!-- <a *ngIf="enr.enrolls[j]" [routerLink]="['/perfil', enr.enrolls[j]._id]"   >{{enr.enrolls[j].user.name}}</a> -->
-                            <a *ngIf="enrollAr" [routerLink]="['/perfil', enrollAr.user._id]">{{enrollAr.user.name}}</a>
-
-                        </div>
-
-
-                    </div>
-
-
-
+      <!-- Muestra todos los viajes -->
+      <div  class="allTravels" *ngIf="travels != null">
+        <h3 class="journeyList"> Todos los viajes disponibles</h3>
+        <div *ngFor="let t of travels" >
+          <a class="btn btn-primary" data-toggle="collapse" href="#{{t._id}}" role="button">Nombre: {{t.name}}</a>  <input type="button" value="Seleccionar viaje"  [routerLink]="['/viajes', t._id]" (click)="ngOnInit()" />
+          <div *ngIf="t.status != false">
+            <div class="collapse contDesc" id="{{t._id}}">
+              <div div class="card card-body">
+                <label>Descripción: {{t.description}}</label>
+                <div>
+                  <label> <input type="button" value="Apuntarse a este viaje" (click)="saveEnroll()"/></label>
                 </div>
 
-                <!-- <div *ngFor="let enr of enrolledsArray; let i = index">
-                    <a *ngIf="enr.enrolls[i] && enr._id == t._id">{{enr.enrolls[i].user.name}}</a>
+                <div class="enrolledUsers" *ngIf="enrolledsArray">
+                  <span>Usuarios apuntados a este viaje:</span>
+                  <br>
+                  <!-- Bucle de enrolls -->
+                  <div *ngFor="let enr of enrolledsArray; let i = index">
+                      <div *ngIf="enr.enrolls[i] && enr._id == t._id">
+                          <div *ngFor="let enrollAr of enr.enrolls; let j = index">
+                              <!-- <a *ngIf="enr.enrolls[j]" [routerLink]="['/perfil', enr.enrolls[j]._id]"   >{{enr.enrolls[j].user.name}}</a> -->
+                              <a *ngIf="enrollAr" [routerLink]="['/perfil', enrollAr.user._id]">{{enrollAr.user.name}}</a>
+
+                          </div>
+
+
+                      </div>
 
 
 
-                </div> -->
-
-                <div *ngIf="t.organizer == identity._id"><!--Solo se muestra si eres el organizador del viaje-->
-                  <label>Sube una foto</label>
-                  <input  type="file" class="form-control-file border" (change)="fileChangeEvent($event)"/>
-                  <input  type="submit" value="Subir fotos" class="btn btn-success" (click)="uploadImage(t._id)"/>
-                </div>
-
-                <!-- Galeria de cada viaje  -->
-
-                <div id="{{'carouselExampleControls'+t._id}}" class="carousel slide" data-ride="carousel" *ngIf="t.galery != null && t.galery != '' && t.galery != undefined">
-                  <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
-                      <img class="d-block img-fluid" src="{{url + 'get-image-travel/' + t.galery[0]}}">
-                    </div>
-                    <div class="carousel-item" *ngFor="let g of t.galery | slice:1">
-                      <img class="d-block img-fluid" src="{{url + 'get-image-travel/' + g}}" >
-                    </div>
                   </div>
-                  <a class="carousel-control-prev" href="#{{'carouselExampleControls'+t._id}}" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#{{'carouselExampleControls'+t._id}}" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
+
+                  <!-- <div *ngFor="let enr of enrolledsArray; let i = index">
+                      <a *ngIf="enr.enrolls[i] && enr._id == t._id">{{enr.enrolls[i].user.name}}</a>
+
+
+
+                  </div> -->
+
+                  <div *ngIf="t.organizer == identity._id"><!--Solo se muestra si eres el organizador del viaje-->
+                    <br>
+                    <label>Sube una foto</label>
+                    <input  type="file" class="form-control-file border" (change)="fileChangeEvent($event)"/>
+                    <input  type="submit" value="Subir fotos" class="btn btn-success" (click)="uploadImage(t._id)"/>
+                  </div>
+                  <br>
+
+                  <!-- Galeria de cada viaje  -->
+
+                  <div id="{{'carouselExampleControls'+t._id}}" class="carousel slide" data-ride="carousel" *ngIf="t.galery != null && t.galery != '' && t.galery != undefined">
+                    <div class="carousel-inner" role="listbox">
+                      <div class="carousel-item active">
+                        <img class="d-block img-fluid"  src="{{url + 'get-image-travel/' + t.galery[0]}}">
+                      </div>
+                      <div class="carousel-item" *ngFor="let g of t.galery | slice:1">
+                        <img class="d-block img-fluid" src="{{url + 'get-image-travel/' + g}}" >
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#{{'carouselExampleControls'+t._id}}" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#{{'carouselExampleControls'+t._id}}" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+
                 </div>
 
               </div>
 
             </div>
-
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-</div>
-<div class="row">
-  <div class="col-lg-12">
-
-    <!--aquí debería ir el desplegable para ver los viajes de cada usuario o de todos ellos-->
-
-    <!--aquí las publicaciones del usuario o de todos los usuarios-->
-
-  </div>
 </div>
 
 </div>

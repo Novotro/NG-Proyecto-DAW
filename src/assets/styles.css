@@ -103,7 +103,7 @@ body{
       height: 100%;
 }
 
-.carousel-caption h3,.carousel-caption p{
+.carousel-caption h3,.carousel-caption p, .list-group-item{
   font-family: 'Luckiest Guy', cursive !important;
   font-weight: bold;
   color: #ffda00 !important;
@@ -345,7 +345,7 @@ i.social{
 }
 
 
-label, #user-card .label-stats{
+label, #user-card .label-stats, .contDesc{
   font-family: 'Luckiest Guy', cursive !important;
   color: #ffda00 !important;
   text-shadow:  0 0 10px #ff1b00,
@@ -452,7 +452,7 @@ label, #user-card .label-stats{
 
 #data-profile .stats a, .messagesOptList li a,
 .item-publication .user-name, #user-card .name-surname a,
-.modal-header, .text-alert, .closeButton, .journeyList{
+.modal-header, .text-alert, .closeButton, .journeyList,.enrolledUsers * a{
     text-decoration: none;
     font-family: 'Luckiest Guy', cursive !important;
     color: #ff1b00 !important;
@@ -464,7 +464,7 @@ label, #user-card .label-stats{
 #data-profile .stats a:hover, .messagesOptList li a:hover,
 .item-user .user_name .name-surname a:hover,
 .item-publication .user-name:hover,
-#user-card .name-surname a:hover, .closeButton:hover{
+#user-card .name-surname a:hover, .closeButton:hover, .enrolledUsers * a:hover{
   color: #ffda00 !important;
   text-shadow:  0 0 10px #ff1b00,
                 0 0 20px #ff1b00,
@@ -548,6 +548,26 @@ agm-marker{
   margin-right: 1%;
   margin-bottom: 1%;
 }
+
+.list-group,.contDesc{
+  border-radius: 10px;
+  box-shadow:  0 0 10px #ff1b00,
+	             0 0 20px #ff1b00,
+	             0 0 30px #ff1b00;
+}
+.list-group-item{
+  border-radius: 10px;
+  border: 1px solid #ff1b00;
+  background-color: #ffa50080 !important;
+}
+
+.contDesc{
+  border: 1px solid #ff1b00;
+  background-color: #ffa50080 !important;
+}
+
+
+
 /*modal box*/
 
 .publicationTex{
@@ -627,6 +647,14 @@ agm-marker{
 
 /*Galeria de maps*/
 
-.galeryMini img{
-    max-width: 100px;
+.enrolledUsers .carousel-inner,.imgPublication img{
+      margin-left: 25%;
+      width: 50%;
+      height: 50%;
+}
+
+.imgPublication img{
+  border-radius: 10px;
+  border: 3px solid  #ff1b00;
+  padding: 0%;
 }
